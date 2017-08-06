@@ -1,0 +1,62 @@
+.toolbar
+  box-shadow 0 2px 4px rgba(#000, .35)
+  font-size 14px
+
+  ul
+    margin-top -160px
+    transition-duration .3s
+    transition-timing-function ease-out
+    &.expanded
+      margin-top 0
+
+    li
+      border-bottom 1px solid #ddd
+      background-repeat no-repeat
+      justify-content center
+      color rgba(#000, .87)
+      background-color #fff
+      background-size cover
+      align-items center
+      line-height: 39px
+      text-align center
+      font-weight 400
+      cursor pointer
+      transition .2s
+      display flex
+      &:hover
+        background-color #f5f5f5
+        color #2196F3
+      .icon
+        display inline-block
+        margin-right 10px
+        height 20px
+        width 20px
+
+  .userdata
+    justify-content space-between
+    background-color #2196F3
+    align-items center
+    padding 8px 12px
+    font-size 14px
+    display flex
+    height 54px
+    color #fff
+
+    .user
+      align-items center
+      display flex
+      &__photo
+        background-repeat no-repeat
+        background-size cover
+        margin-right: 10px
+        border-radius 50%
+        display block
+        height 38px
+        width 38px
+      &__name
+        font-weight 500
+
+    .md-button
+      background #3f51b5
+      color #fff
+      width 85px

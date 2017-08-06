@@ -1,0 +1,27 @@
+.autocomplete-field
+  position relative
+  font-size 1rem
+
+  .search-icon
+    color rgba(#000, .54)
+    pointer-events none
+    position absolute
+    transition .2s
+    left 10px
+    top 13px
+
+  input
+    border-bottom 1px solid #ddd
+    padding: 16px 15px 13px 41px
+    transition border .2s
+    width 100%
+
+    &:focus
+      border-bottom 2px solid #2196f3
+
+      & + .search-icon
+        color #2196f3
+
+/* Google maps "autocomplete" style fix */
+.pac-logo::after
+  display none
