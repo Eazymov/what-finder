@@ -10,14 +10,14 @@ export type User = models.User;
 export type GoogleMap = models.Map;
 
 export interface State {
-  user?: User;
-  map?: GoogleMap;
+  user: User | null;
+  map: GoogleMap | null;
 }
 
-export type authMethod = {
+export interface authMethod {
   name: string;
   provider: firebase.auth.AuthProvider;
-};
+}
 
 export type authData = {
   [key: string]: firebase.User
@@ -27,7 +27,7 @@ export interface Database extends firebase.app.App {
   authMethods?: Array<authMethod>;
 }
 
-export type mapCoords = {
+export interface mapCoords {
   center: LatLng | LatLngLiteral
   zoom: number
-};
+}

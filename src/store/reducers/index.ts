@@ -1,10 +1,12 @@
 import { AnyAction, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import State = App.State;
 import actionTypes from '../actionTypes';
+import initialState from '../initialState';
 
-function mapReducer(state: State = {}, action: AnyAction): State {
+import State = App.State;
+
+function map(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
     case actionTypes.SET_MAP:
       return action.payload;
@@ -13,7 +15,7 @@ function mapReducer(state: State = {}, action: AnyAction): State {
   }
 }
 
-function userReducer(state: State = {}, action: AnyAction): State {
+function user(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
     case actionTypes.SET_USER:
       return action.payload;
@@ -22,7 +24,7 @@ function userReducer(state: State = {}, action: AnyAction): State {
   }
 }
 
-function placeReducer(state: State = {}, action: AnyAction): State {
+function place(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
     case actionTypes.SET_PLACE:
       return action.payload;
@@ -32,9 +34,9 @@ function placeReducer(state: State = {}, action: AnyAction): State {
 }
 
 const reducer = combineReducers({
-  mapReducer,
-  userReducer,
-  placeReducer,
+  map,
+  user,
+  place,
   routerReducer
 });
 

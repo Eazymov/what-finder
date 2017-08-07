@@ -11,8 +11,6 @@
     "@types/react-redux": "^4.4.47",
     "@types/react-router": "^4.0.14",
     "@types/react-router-redux": "^5.0.4",
-    "@types/redux": "^3.6.0",
-    "@types/redux-actions": "^1.2.7",
     "firebase": "^4.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -27,11 +27,10 @@ class ToolbarComponent extends Component<Props, State> {
     };
   }
 
-  render () {
+  render (): JSX.Element {
     const { expanded } = this.state;
     const { user } = this.props;
     const authMethods = base.authMethods || [];
-    const { _authenticate, _renderUserbar } = this;
 
     return (
       <div className="toolbar">
@@ -46,7 +45,7 @@ class ToolbarComponent extends Component<Props, State> {
               return (
                 <li
                   key={index}
-                  onClick={() => _authenticate(provider)}
+                  onClick={() => this._authenticate(provider)}
                 >
                   <i
                     className="icon"
@@ -57,12 +56,12 @@ class ToolbarComponent extends Component<Props, State> {
               );
             }) }
         </ul>
-        {_renderUserbar(user, expanded)}
+        {this._renderUserbar(user, expanded)}
       </div>
     );
   }
 
-  private _renderUserbar = (user: App.User, expanded: boolean) => {
+  private _renderUserbar = (user: App.User, expanded: boolean): JSX.Element => {
     const onClick = user ? this._logout : this._toggleList;
     const buttonText = user ? 'logout' : expanded ? 'Cancel' : 'Log in';
     const loginButton = (

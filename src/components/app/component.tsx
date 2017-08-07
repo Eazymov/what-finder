@@ -19,9 +19,9 @@ class AppComponent extends Component<Props, {}> {
   }
 
   componentWillMount() {
-    const savedUser = Storage.getUser();
+    const savedUser: App.User | null = Storage.getUser();
 
-    if (savedUser) {
+    if (savedUser !== null) {
       this.props.setUser(savedUser);
     }
   }
