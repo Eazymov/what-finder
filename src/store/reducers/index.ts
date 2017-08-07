@@ -1,30 +1,30 @@
-import { combineReducers } from 'redux';
-import { routerReducer as router } from 'react-router-redux';
+import { AnyAction, combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 
 import State = App.State;
-import Action = ReduxActions.Action;
+import actionTypes from '../actionTypes';
 
-function map(state: State = {}, action: Action<string>) {
+function mapReducer(state: State = {}, action: AnyAction): State {
   switch (action.type) {
-    case 'SET_MAP':
+    case actionTypes.SET_MAP:
       return action.payload;
     default:
       return state;
   }
 }
 
-function user(state: State = {}, action: Action<string>) {
+function userReducer(state: State = {}, action: AnyAction): State {
   switch (action.type) {
-    case 'SET_USER':
+    case actionTypes.SET_USER:
       return action.payload;
     default:
       return state;
   }
 }
 
-function place(state: State = {}, action: Action<string>) {
+function placeReducer(state: State = {}, action: AnyAction): State {
   switch (action.type) {
-    case 'SET_PLACE':
+    case actionTypes.SET_PLACE:
       return action.payload;
     default:
       return state;
@@ -32,10 +32,10 @@ function place(state: State = {}, action: Action<string>) {
 }
 
 const reducer = combineReducers({
-  map,
-  user,
-  place,
-  router
+  mapReducer,
+  userReducer,
+  placeReducer,
+  routerReducer
 });
 
 export default reducer;

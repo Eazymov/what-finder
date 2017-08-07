@@ -8,10 +8,11 @@ interface DispatchToProps {
   setUser: Function;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<object>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<App.State>) => ({
   setUser: (user: App.User) => dispatch(setUser(user))
 });
 
-export default connect<{}, DispatchToProps, {}>(
+export default connect<null, DispatchToProps, {}>(
+  null,
   mapDispatchToProps
 )(component);

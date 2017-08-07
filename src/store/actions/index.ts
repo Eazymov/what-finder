@@ -1,26 +1,26 @@
-const SET_MAP: string = 'SET_MAP';
-const SET_USER: string = 'SET_USER';
-const SET_PLACE: string = 'SET_PLACE';
+import { AnyAction } from 'redux';
+
+import actionTypes from '../actionTypes';
 
 import places = google.maps.places;
 
-export function setMap(map: App.GoogleMap) {
+export function setMap(map: App.GoogleMap): AnyAction {
   return {
-    type: SET_MAP,
+    type: actionTypes.SET_MAP,
     payload: map
   };
 }
 
-export function setUser(user: App.User) {
+export function setUser(user: App.User): AnyAction {
   return {
-    type: SET_USER,
+    type: actionTypes.SET_USER,
     payload: user
   };
 }
 
-export function setPlace(place: places.PlaceResult) {
+export function setPlace(place: places.PlaceResult): AnyAction {
   return {
-    type: SET_PLACE,
+    type: actionTypes.SET_PLACE,
     payload: place
   };
 }

@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { connect } from 'react-redux';
 import { RouterProps } from 'react-router';
-
-import { setMap } from '../../store/actions';
 
 import GoogleMap from '../../models/Map';
 import Storage from '../../models/Storage';
@@ -102,17 +99,4 @@ class MapComponent extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: App.State) => ({
-  map: state.map
-});
-
-const mapDispatchToProps = (dispatch: Function) => ({
-  setMap: (map: App.GoogleMap) => dispatch(setMap(map))
-});
-
-const ConnectedMap = connect<{}, {}, {}>(
-  mapStateToProps,
-  mapDispatchToProps
-)(MapComponent);
-
-export default ConnectedMap;
+export default MapComponent;
