@@ -1,3 +1,8 @@
+// Types
+type User = App.User;
+type MapCoords = App.MapCoords;
+//
+
 const prefix: string = 'what-finder';
 const localStorage = window.localStorage;
 
@@ -10,13 +15,13 @@ const Storage = {
     zoom: 12
   },
 
-  setUser (user: App.User): void {
+  setUser (user: User): void {
     const userJSON = JSON.stringify(user);
 
     localStorage.setItem(`${prefix}.user`, userJSON);
   },
 
-  getUser (): App.User | null {
+  getUser (): User | null {
     const savedUser = localStorage.getItem(`${prefix}.user`);
 
     return savedUser ? JSON.parse(savedUser) : null;
@@ -26,16 +31,16 @@ const Storage = {
     localStorage.removeItem(`${prefix}.user`);
   },
 
-  setLastCoords (coords: App.mapCoords): void {
+  setLastCoords (coords: MapCoords): void {
     const coordsJSON = JSON.stringify(coords);
 
     localStorage.setItem(`${prefix}.lastCoords`, coordsJSON);
   },
 
-  getLastCoords (): App.mapCoords | null {
+  getLastCoords (): MapCoords | undefined {
     const savedCoords = localStorage.getItem(`${prefix}.lastCoords`);
 
-    return savedCoords ? JSON.parse(savedCoords) : null;
+    return savedCoords ? JSON.parse(savedCoords) : undefined;
   }
 };
 

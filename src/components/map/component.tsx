@@ -1,3 +1,7 @@
+// Types
+type MapCoords = App.MapCoords;
+//
+
 import * as React from 'react';
 import { Component } from 'react';
 import { RouterProps } from 'react-router';
@@ -18,50 +22,50 @@ interface State {
 }
 
 class MapComponent extends Component<Props, State> {
-  private _map: App.GoogleMap;
-  private _element: HTMLDivElement;
-  private _initialCoords: App.mapCoords | null;
+  public state = {
+    showLoader: true,
+  };
+
+  private map: GoogleMap;
+  private element: Element;
+  private initialCoords: MapCoords | null;
 
   constructor (props: Props) {
     super(props);
-
-    this.state = {
-      showLoader: true
-    };
   }
 
   render () {
     return (
       <section id="map-holder">
-        <div id="Map" ref={map => map && (this._element = map)} />
+        <div id="Map" ref={map => map && (this.element = map)} />
         <AppLoader show={this.state.showLoader} />
       </section>
     );
   }
 
   componentWillMount (): void {
-    const routeCoords = this._getRouteCoords();
+    const routeCoords = this.getRouteCoords();
     const lastCoords = Storage.getLastCoords();
 
-    const coords = routeCoords || lastCoords;
+    const coords: MapCoords | null = routeCoords || lastCoords;
 
-    this._initialCoords = coords;
+    this.initialCoords = coords;
   }
 
   componentDidMount (): void {
-    this._createMap();
-    this._setMapCoords();
+    this.createMap();
+    this.setMapCoords();
 
-    window.onbeforeunload = this._beforeDestroy;
+    window.onbeforeunload = this.beforeDestroy;
   }
 
-  private _beforeDestroy = (): void => {
-    const coords = this._map.getCoords();
+  private beforeDestroy = (): void => {
+    const coords = this.map.getCoords();
 
     Storage.setLastCoords(coords);
   }
 
-  private _getRouteCoords = (): App.mapCoords | null => {
+  private getRouteCoords = (): MapCoords | null => {
     // const params = history.location.pathname.match.arguments;
 
     return null;
@@ -75,26 +79,26 @@ class MapComponent extends Component<Props, State> {
     }; */
   }
 
-  private _createMap = (): void => {
-    const map = new GoogleMap(this._element);
+  private createMap = (): void => {
+    const map: GoogleMap = new GoogleMap(this.element);
 
-    this._map = map;
+    this.map = map;
     this.props.setMap(map);
 
-    map.addListener('idle', this._hideLoader);
+    map.addListener('idle', this.hideLoader);
   }
 
-  private _setMapCoords = (): void => {
-    const { _map, _initialCoords } = this;
+  private setMapCoords = (): void => {
+    const { map, initialCoords } = this;
 
-    if (_initialCoords) {
-      return _map.setCoords(_initialCoords);
+    if (initialCoords) {
+      return map.setCoords(initialCoords);
     }
 
-    _map.setCoordsByDefault();
+    map.setCoordsByDefault();
   }
 
-  private _hideLoader = (): void => {
+  private hideLoader = (): void => {
     this.setState({ showLoader: false });
   }
 }

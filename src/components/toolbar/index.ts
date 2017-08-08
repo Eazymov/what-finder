@@ -2,7 +2,7 @@ import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../store/actions';
 
-import Component from './component';
+import component from './component';
 
 interface StateToProps {
   user: App.User | null;
@@ -23,4 +23,4 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
 export default connect<StateToProps, DispatchToProps, {}>(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+)(component);

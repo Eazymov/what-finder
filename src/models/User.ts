@@ -1,3 +1,7 @@
+// Types
+type UserInfo = firebase.UserInfo;
+//
+
 class User {
   public id: string;
   public name: string | null;
@@ -6,7 +10,7 @@ class User {
   public phoneNumber: string | null;
   public providerId: string;
 
-  constructor(userData: firebase.UserInfo) {
+  constructor(userData: UserInfo) {
     this.id = userData.uid;
     this.name = userData.displayName;
     this.email = userData.email;

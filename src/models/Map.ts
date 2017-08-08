@@ -1,13 +1,16 @@
+// Types
+type MapOptions = google.maps.MapOptions;
+type MapCoords = App.MapCoords;
+type PlaceResult = google.maps.places.PlaceResult;
+//
+
 import { GMap } from '../mapsAPI';
 import Storage from '../models/Storage';
-
-import MapOptions = google.maps.MapOptions;
-import PlaceResult = google.maps.places.PlaceResult;
 
 const geolocation = window.navigator.geolocation;
 
 class GoogleMap extends GMap {
-  constructor (element: HTMLDivElement, params?: MapOptions) {
+  constructor (element: Element, params?: MapOptions) {
     super(element, params);
   }
 
@@ -45,12 +48,12 @@ class GoogleMap extends GMap {
     this.setZoom(18);
   } */
 
-  public setCoords = (coords: App.mapCoords): void => {
+  public setCoords = (coords: MapCoords): void => {
     this.setCenter(coords.center);
     this.setZoom(coords.zoom);
   }
 
-  public getCoords = (): App.mapCoords => {
+  public getCoords = (): MapCoords => {
     const center = this.getCenter();
     const zoom = this.getZoom();
 

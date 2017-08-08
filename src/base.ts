@@ -1,30 +1,35 @@
+// Types
+type Database = App.Database;
+type AuthProvider = firebase.auth.AuthProvider;
+//
+
 import * as firebase from 'firebase';
 
-const base: App.Database = firebase.initializeApp({
+const base: Database = firebase.initializeApp({
   apiKey: 'AIzaSyC-SguVlp91tIuIM9pBY4-yTqM9_us8jrg',
   authDomain: 'react-maps-api-app.firebaseapp.com',
-  databaseURL: 'https://react-maps-api-app.firebaseio.com'
+  databaseURL: 'https://react-maps-api-app.firebaseio.com',
 });
 
-export const FacebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-export const GithubAuthProvider = new firebase.auth.GithubAuthProvider();
-export const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-export const TwitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+const FacebookAuthProvider: AuthProvider = new firebase.auth.FacebookAuthProvider();
+const GithubAuthProvider: AuthProvider = new firebase.auth.GithubAuthProvider();
+const GoogleAuthProvider: AuthProvider = new firebase.auth.GoogleAuthProvider();
+const TwitterAuthProvider: AuthProvider = new firebase.auth.TwitterAuthProvider();
 
 base.authMethods = [
   {
     name: 'Facebook',
-    provider: FacebookAuthProvider
+    provider: FacebookAuthProvider,
   }, {
     name: 'Github',
-    provider: GithubAuthProvider
+    provider: GithubAuthProvider,
   }, {
     name: 'Google',
-    provider: GoogleAuthProvider
+    provider: GoogleAuthProvider,
   }, {
     name: 'Twitter',
-    provider: TwitterAuthProvider
-  }
+    provider: TwitterAuthProvider,
+  },
 ];
 
 export default base;

@@ -1,8 +1,5 @@
 import * as models from '../models';
 
-import LatLng = google.maps.LatLng;
-import LatLngLiteral = google.maps.LatLngLiteral;
-
 export as namespace App;
 
 export type User = models.User;
@@ -10,24 +7,24 @@ export type User = models.User;
 export type GoogleMap = models.Map;
 
 export interface State {
-  user: User | null;
-  map: GoogleMap | null;
+  user?: User;
+  map?: GoogleMap;
 }
 
-export interface authMethod {
+export interface AuthMethod {
   name: string;
   provider: firebase.auth.AuthProvider;
 }
 
-export type authData = {
-  [key: string]: firebase.User
+export interface AuthData {
+  [key: string]: firebase.User;
 }
 
 export interface Database extends firebase.app.App {
-  authMethods?: Array<authMethod>;
+  authMethods?: Array<AuthMethod>;
 }
 
-export interface mapCoords {
-  center: LatLng | LatLngLiteral
+export interface MapCoords {
+  center: google.maps.LatLng | google.maps.LatLngLiteral
   zoom: number
 }

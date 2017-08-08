@@ -7,6 +7,9 @@ import base from '../../base';
 import Storage from '../../models/Storage';
 import User from '../../models/User';
 
+import AuthMethod = App.AuthMethod;
+import AuthData = App.AuthData;
+
 import './style.styl';
 
 interface Props {
@@ -19,25 +22,25 @@ interface State {
 }
 
 class ToolbarComponent extends Component<Props, State> {
+  public state = {
+    expanded: false
+  };
+
   constructor (props: Props) {
     super(props);
-
-    this.state = {
-      expanded: false
-    };
   }
 
   render (): JSX.Element {
-    const { expanded } = this.state;
-    const { user } = this.props;
-    const authMethods = base.authMethods || [];
+    const expanded: boolean = this.state.expanded;
+    const user: User = this.props.user;
+    const authMethods: AuthMethod[] = base.authMethods || [];
 
     return (
       <div className="toolbar">
         <ul
           className={expanded ? 'expanded' : ''}
         >
-          { authMethods.map((method: App.authMethod, index: number) => {
+          { authMethods.map((method: AuthMethod, index: number) => {
               const { name, provider } = method;
               const url = `/icons/${name}.svg`;
               const backgroundImage = `url(${url})`;
@@ -61,7 +64,7 @@ class ToolbarComponent extends Component<Props, State> {
     );
   }
 
-  private _renderUserbar = (user: App.User, expanded: boolean): JSX.Element => {
+  private _renderUserbar = (user: User, expanded: boolean): JSX.Element => {
     const onClick = user ? this._logout : this._toggleList;
     const buttonText = user ? 'logout' : expanded ? 'Cancel' : 'Log in';
     const loginButton = (
@@ -94,7 +97,7 @@ class ToolbarComponent extends Component<Props, State> {
       .catch(console.error);
   }
 
-  private _authHandler = (authData: App.authData): void => {
+  private _authHandler = (authData: AuthData): void => {
     const [providerData] = authData.user.providerData;
 
     if (!providerData) {

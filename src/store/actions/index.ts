@@ -1,26 +1,30 @@
+// Types
+type User = App.User;
+type GoogleMap = App.GoogleMap;
+type PlaceResult = google.maps.places.PlaceResult;
+//
+
 import { AnyAction } from 'redux';
 
 import actionTypes from '../actionTypes';
 
-import places = google.maps.places;
-
-export function setMap(map: App.GoogleMap): AnyAction {
+export function setMap(map: GoogleMap): AnyAction {
   return {
     type: actionTypes.SET_MAP,
-    payload: map
+    payload: map,
   };
 }
 
-export function setUser(user: App.User): AnyAction {
+export function setUser(user: User): AnyAction {
   return {
     type: actionTypes.SET_USER,
-    payload: user
+    payload: user,
   };
 }
 
-export function setPlace(place: places.PlaceResult): AnyAction {
+export function setPlace(place: PlaceResult): AnyAction {
   return {
     type: actionTypes.SET_PLACE,
-    payload: place
+    payload: place,
   };
 }

@@ -1,3 +1,7 @@
+// Types
+type User = App.User;
+//
+
 import * as React from 'react';
 import { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
@@ -19,7 +23,7 @@ class AppComponent extends Component<Props, {}> {
   }
 
   componentWillMount() {
-    const savedUser: App.User | null = Storage.getUser();
+    const savedUser: User | null = Storage.getUser();
 
     if (savedUser !== null) {
       this.props.setUser(savedUser);
