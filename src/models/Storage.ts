@@ -21,7 +21,7 @@ const Storage = {
     localStorage.setItem(`${prefix}.user`, userJSON);
   },
 
-  getUser (): User | null {
+  getUser (): User | undefined {
     const savedUser = localStorage.getItem(`${prefix}.user`);
 
     return savedUser ? JSON.parse(savedUser) : null;
