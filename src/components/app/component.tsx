@@ -1,21 +1,22 @@
 // Types
 type User = App.User;
+type JSXElement = JSX.Element;
+
+interface Props {
+  setUser: Function;
+}
 //
 
 import * as React from 'react';
 import { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 
-import Storage from '../../models/Storage';
+import Storage from '../../Storage';
 
 import AppMap from '../map';
 import AppSidebar from '../sidebar';
 
 import './style.styl';
-
-interface Props {
-  setUser: Function;
-}
 
 class AppComponent extends Component<Props, {}> {
   constructor (props: Props) {
@@ -23,14 +24,14 @@ class AppComponent extends Component<Props, {}> {
   }
 
   componentWillMount() {
-    const savedUser: User | null = Storage.getUser();
+    const savedUser: User | undefined = Storage.getUser();
 
-    if (savedUser !== null) {
+    if (savedUser !== undefined) {
       this.props.setUser(savedUser);
     }
   }
 
-  render() {
+  render(): JSXElement {
     return (
       <section id="App">
         <AppSidebar />

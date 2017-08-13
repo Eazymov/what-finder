@@ -1,11 +1,15 @@
+// Types
+type Autocomplete = google.maps.places.Autocomplete;
+type PlaceResult = google.maps.places.PlaceResult;
+
+import GoogleMap from '../../models/Map.js';
+//
+
 import * as React from 'react';
 import { Component } from 'react';
 
 import { history } from '../../router';
 import { GAutocomplete } from '../../mapsAPI';
-import GoogleMap from '../../models/Map.js';
-
-import places = google.maps.places;
 
 import './style.styl';
 
@@ -15,8 +19,8 @@ interface MappedProps {
 }
 
 class SearchComponent extends Component<MappedProps, {}> {
-  private _input: HTMLInputElement;
-  private _autocomplete: places.Autocomplete;
+  private input: HTMLInputElement;
+  private autocomplete: Autocomplete;
 
   constructor (props: MappedProps) {
     super(props);
@@ -27,7 +31,7 @@ class SearchComponent extends Component<MappedProps, {}> {
       <div className="autocomplete-field">
         <input
           type="text"
-          ref={(input: HTMLInputElement) => this._input = input}
+          ref={(input: HTMLInputElement) => this.input = input}
           placeholder="Search for any place..."
         />
         <span className="material-icons search-icon">search</span>
@@ -36,29 +40,25 @@ class SearchComponent extends Component<MappedProps, {}> {
   }
 
   componentDidMount () {
-    const autocomplete: places.Autocomplete = new GAutocomplete(this._input);
+    const autocomplete: Autocomplete = new GAutocomplete(this.input);
 
-    this._autocomplete = autocomplete;
+    this.autocomplete = autocomplete;
 
-    autocomplete.addListener('place_changed', this._onSelect);
+    autocomplete.addListener('place_changed', this.onSelect);
   }
 
-  private _onSelect = () => {
-    const placeInfo: places.PlaceResult = this._autocomplete.getPlace();
-
-    if (!placeInfo.place_id) {
-      return;
-    }
+  private onSelect = (): void => {
+    const placeInfo: PlaceResult = this.autocomplete.getPlace();
 
     const { map, setPlace } = this.props;
 
-    this._correctMap(map, placeInfo);
-    this._changeRouteParams(map);
+    this.correctMap(map, placeInfo);
+    this.changeRouteParams(map);
 
     setPlace(placeInfo);
   }
 
-  private _correctMap = (map: GoogleMap, placeInfo: places.PlaceResult) => {
+  private correctMap = (map: GoogleMap, placeInfo: PlaceResult): void => {
     const { address_components } = placeInfo;
     const { location } = placeInfo.geometry;
     const zoom = Math.round(address_components.length * 1.65) + 6;
@@ -67,8 +67,9 @@ class SearchComponent extends Component<MappedProps, {}> {
     map.setZoom(zoom);
   }
 
-  private _changeRouteParams = (map: GoogleMap) => {
-    const { center: { lat, lng }, zoom } = map.getCoords();
+  private changeRouteParams = (map: GoogleMap): void => {
+    const { center, zoom } = map.getCoords();
+    const { lat, lng } = center;
 
     history.push(`/@${lat},${lng},${zoom}`);
   }

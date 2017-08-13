@@ -1,14 +1,16 @@
+// Types
+type AuthProvider = firebase.auth.AuthProvider;
+type AuthMethod = App.AuthMethod;
+type AuthData = App.AuthData;
+type JSXElement = JSX.Element;
+//
+
 import * as React from 'react';
 import { Component } from 'react';
 
-import AuthProvider = firebase.auth.AuthProvider;
-
 import base from '../../base';
-import Storage from '../../models/Storage';
+import Storage from '../../Storage';
 import User from '../../models/User';
-
-import AuthMethod = App.AuthMethod;
-import AuthData = App.AuthData;
 
 import './style.styl';
 
@@ -48,7 +50,7 @@ class ToolbarComponent extends Component<Props, State> {
               return (
                 <li
                   key={index}
-                  onClick={() => this._authenticate(provider)}
+                  onClick={() => this.authenticate(provider)}
                 >
                   <i
                     className="icon"
@@ -59,13 +61,13 @@ class ToolbarComponent extends Component<Props, State> {
               );
             }) }
         </ul>
-        {this._renderUserbar(user, expanded)}
+        {this.renderUserbar(user, expanded)}
       </div>
     );
   }
 
-  private _renderUserbar = (user: User, expanded: boolean): JSX.Element => {
-    const onClick = user ? this._logout : this._toggleList;
+  private renderUserbar = (user: User, expanded: boolean): JSXElement => {
+    const onClick = user ? this.logout : this.toggleList;
     const buttonText = user ? 'logout' : expanded ? 'Cancel' : 'Log in';
     const loginButton = (
       <button onClick={onClick} className="md-button">
@@ -81,7 +83,10 @@ class ToolbarComponent extends Component<Props, State> {
               className="user__photo"
               style={{ backgroundImage: `url(${user.photoURL})` }}
             />
-            <span className="user__name">{user.name}</span>
+            <div className="user__info">
+              <span className="user__info--name">{user.name}</span>
+              <span className="user__info--email">{user.email}</span>
+            </div>
           </div>
           : <span>You aren't logged in</span> }
         {loginButton}
@@ -89,15 +94,15 @@ class ToolbarComponent extends Component<Props, State> {
     );
   }
 
-  private _authenticate = (provider: AuthProvider): void => {
+  private authenticate = (provider: AuthProvider): void => {
     base
       .auth()
       .signInWithPopup(provider)
-      .then(this._authHandler)
+      .then(this.authHandler)
       .catch(console.error);
   }
 
-  private _authHandler = (authData: AuthData): void => {
+  private authHandler = (authData: AuthData): void => {
     const [providerData] = authData.user.providerData;
 
     if (!providerData) {
@@ -112,13 +117,13 @@ class ToolbarComponent extends Component<Props, State> {
     this.setState({ expanded: false });
   }
 
-  private _logout = (): void => {
+  private logout = (): void => {
     Storage.removeUser();
 
     this.props.setUser(null);
   }
 
-  private _toggleList = (): void => {
+  private toggleList = (): void => {
     const expanded = !this.state.expanded;
 
     this.setState({ expanded });

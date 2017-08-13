@@ -5,7 +5,7 @@ type PlaceResult = google.maps.places.PlaceResult;
 //
 
 import { GMap } from '../mapsAPI';
-import Storage from '../models/Storage';
+import Storage from '../Storage';
 
 const geolocation = window.navigator.geolocation;
 
@@ -18,7 +18,7 @@ class GoogleMap extends GMap {
     this.setCoords(Storage.defaultCoords);
   }
 
-  public setPlace = (place: PlaceResult): void => {
+  public setPlace (place: PlaceResult): void {
     const { address_components } = place;
     const { location } = place.geometry;
     const zoom = Math.round(address_components.length * 1.65) + 6;
@@ -27,7 +27,7 @@ class GoogleMap extends GMap {
     this.setZoom(zoom);
   }
 
-  public getUserLocation = () => {
+  public getUserLocation () {
     return new Promise((resolve, reject) => {
       const options = {
         enableHighAccuracy: true,
@@ -40,21 +40,36 @@ class GoogleMap extends GMap {
     });
   }
 
-  /* setUserLocation = (pos) => {
-    const coords = pos.coords;
-    const [lat, lng] = [coords.latitude, coords.longitude];
+  public setUserLocation () {
+    return new Promise((resolve, reject) => {
+      const successCallback = (pos: Position): void => {
+        const coords = pos.coords;
+        const [lat, lng] = [coords.latitude, coords.longitude];
 
-    this.setCenter({ lat, lng });
-    this.setZoom(18);
-  } */
+        this.setCenter({ lat, lng });
+        this.setZoom(18);
 
-  public setCoords = (coords: MapCoords): void => {
+        resolve();
+      };
+
+      this
+        .getUserLocation()
+        .then(successCallback)
+        .catch(reject);
+    });
+  }
+
+  public setCoords (coords: MapCoords): void {
     this.setCenter(coords.center);
     this.setZoom(coords.zoom);
   }
 
   public getCoords = (): MapCoords => {
-    const center = this.getCenter();
+    const { lat, lng } = this.getCenter();
+    const center = {
+      lat: lat(),
+      lng: lng()
+    };
     const zoom = this.getZoom();
 
     return { center, zoom };

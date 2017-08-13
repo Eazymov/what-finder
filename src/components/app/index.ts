@@ -1,4 +1,3 @@
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../store/actions';
 
@@ -8,11 +7,11 @@ interface DispatchToProps {
   setUser: Function;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   setUser: (user: App.User) => dispatch(setUser(user))
 });
 
-export default connect<null, DispatchToProps, {}>(
-  null,
+export default connect<undefined, DispatchToProps, {}>(
+  undefined,
   mapDispatchToProps
 )(component);

@@ -7,7 +7,7 @@ import Component from './component';
 import PlaceResult = google.maps.places.PlaceResult;
 
 interface StateToProps {
-  map: App.GoogleMap | null;
+  map: App.GoogleMap | undefined;
 }
 
 interface DispatchToProps {

@@ -24,7 +24,7 @@ export interface Database extends firebase.app.App {
   authMethods?: Array<AuthMethod>;
 }
 
-export interface MapCoords {
+declare interface MapCoords {
   center: google.maps.LatLng | google.maps.LatLngLiteral
   zoom: number
 }

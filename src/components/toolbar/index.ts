@@ -5,7 +5,7 @@ import { setUser } from '../../store/actions';
 import component from './component';
 
 interface StateToProps {
-  user: App.User | null;
+  user: App.User | undefined;
 }
 
 interface DispatchToProps {

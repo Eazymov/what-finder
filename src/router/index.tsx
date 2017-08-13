@@ -1,3 +1,7 @@
+// Types
+type JSXElement = JSX.Element;
+//
+
 import * as React from 'react';
 import { Route } from 'react-router';
 import { Provider } from 'react-redux';
@@ -9,7 +13,7 @@ import store from '../store';
 
 const history = createHistory();
 
-const AppRouter: JSX.Element = (
+const AppRouter: JSXElement = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Route path={'/'} component={App} />

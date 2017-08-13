@@ -1,19 +1,17 @@
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-
 import { setMap } from '../../store/actions';
 
 import component from './component';
 
-const mapStateToProps = (state: App.State) => ({
-  map: state.map
-});
+interface DispatchToProps {
+  setMap: Function;
+}
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   setMap: (map: App.GoogleMap) => dispatch(setMap(map))
 });
 
-export default connect<{}, {}, {}>(
-  mapStateToProps,
+export default connect<undefined, DispatchToProps, {}>(
+  undefined,
   mapDispatchToProps
 )(component);
