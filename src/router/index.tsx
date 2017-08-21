@@ -2,7 +2,7 @@
 type JSXElement = JSX.Element;
 //
 
-import * as React from 'react';
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';

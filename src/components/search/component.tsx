@@ -66,11 +66,13 @@ class SearchComponent extends Component<Props, {}> {
   }
 
   private changeRouteParams = (map: GoogleMap): void => {
-    const { center, zoom } = map.getCoords();
-    const lat: string = center.lat.toFixed(7);
-    const lng: string = center.lng.toFixed(7);
+    /* const params = this.props.match.params;
+    const oldCoords: string = params.coords || '';
+    const newCoords: string = map.getParamString();
+    const oldUrl: string = window.location.pathname;
+    const newUrl: string = oldUrl.replace(oldCoords, newCoords);
 
-    history.push(`/@${lat},${lng},${zoom}`);
+    history.push(newUrl); */
   }
 }
 

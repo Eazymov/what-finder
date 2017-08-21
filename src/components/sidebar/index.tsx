@@ -15,7 +15,7 @@ class SidebarComponent extends Component<{}, {}> {
       <section id="sidebar">
         <AppToolbar />
         <AppSearch />
-        <Route path={'/:coords?/place'} component={AppPlaceDescription} />
+        <Route path={'/:coords?/place/:placeId'} component={AppPlaceDescription} />
       </section>
     );
   }

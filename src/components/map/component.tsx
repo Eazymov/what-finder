@@ -7,13 +7,13 @@ interface State {
   showLoader: boolean;
 }
 
-interface Props extends RouteComponentProps<{coords: string}> {
+interface Props extends RouteProps<{coords?: string}> {
   setMap: Function;
 }
 /* *** */
 
 import React, { Component } from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps as RouteProps } from 'react-router';
 
 import { history } from 'router';
 import GoogleMap from 'models/Map';
@@ -101,9 +101,13 @@ class MapComponent extends Component<Props, State> {
   }
 
   private handleCoordsChange = (): void => {
-    const coordsParam: string = this.map.getParamString();
+    const params = this.props.match.params;
+    const oldCoords: string = params.coords || '';
+    const newCoords: string = this.map.getParamString();
+    const oldUrl: string = window.location.pathname;
+    const newUrl: string = oldUrl.replace(oldCoords, newCoords);
 
-    history.push(`/${coordsParam}`);
+    history.push(newUrl);
   }
 
   private async setMapCoords () {
