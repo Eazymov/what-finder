@@ -1,7 +1,4 @@
-import * as React from 'react';
-import { Component } from 'react';
-
-import './style.styl';
+import React, { Component } from 'react';
 
 interface Props {
   show: boolean;

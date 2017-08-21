@@ -1,22 +1,20 @@
-// Types
+/**
+ * Types
+ */
 type AuthProvider = firebase.auth.AuthProvider;
 type AuthMethod = App.AuthMethod;
 type AuthData = App.AuthData;
-type JSXElement = JSX.Element;
-//
+/* *** */
 
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-import base from '../../base';
-import Storage from '../../Storage';
-import User from '../../models/User';
-
-import './style.styl';
+import base from 'shared/base';
+import Storage from 'shared/Storage';
+import User from 'models/User';
 
 interface Props {
   setUser: Function;
-  user: App.User;
+  user: User;
 }
 
 interface State {
@@ -66,7 +64,7 @@ class ToolbarComponent extends Component<Props, State> {
     );
   }
 
-  private renderUserbar = (user: User, expanded: boolean): JSXElement => {
+  private renderUserbar = (user: User, expanded: boolean): JSX.Element => {
     const onClick = user ? this.logout : this.toggleList;
     const buttonText = user ? 'logout' : expanded ? 'Cancel' : 'Log in';
     const loginButton = (

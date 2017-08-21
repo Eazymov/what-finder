@@ -24,7 +24,7 @@ const Storage = {
   getUser (): User | undefined {
     const savedUser = localStorage.getItem(`${prefix}.user`);
 
-    return savedUser ? JSON.parse(savedUser) : null;
+    return savedUser ? JSON.parse(savedUser) : undefined;
   },
 
   removeUser (): void {

@@ -1,30 +1,33 @@
-import * as models from '../models';
+import * as models from 'models';
 
 export as namespace App;
 
-export type User = models.User;
+export declare type User = models.User;
 
-export type GoogleMap = models.Map;
+export declare type GoogleMap = models.Map;
+
+export type Place = google.maps.places.PlaceResult;
 
 export interface State {
-  user?: User;
-  map?: GoogleMap;
+  user: User | null;
+  map: GoogleMap | null;
+  place: Place | null;
 }
 
-export interface AuthMethod {
+declare type AuthMethod = {
   name: string;
   provider: firebase.auth.AuthProvider;
 }
 
-export interface AuthData {
+export declare interface AuthData {
   [key: string]: firebase.User;
 }
 
-export interface Database extends firebase.app.App {
+export declare interface Database extends firebase.app.App {
   authMethods?: Array<AuthMethod>;
 }
 
-declare interface MapCoords {
-  center: google.maps.LatLng | google.maps.LatLngLiteral
+export declare interface MapCoords {
+  center: google.maps.LatLngLiteral
   zoom: number
 }

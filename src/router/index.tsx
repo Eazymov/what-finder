@@ -3,12 +3,12 @@ type JSXElement = JSX.Element;
 //
 
 import * as React from 'react';
-import { Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import App from '../components/app';
+import App from 'components/app';
 import store from '../store';
 
 const history = createHistory();
@@ -16,7 +16,10 @@ const history = createHistory();
 const AppRouter: JSXElement = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Route path={'/'} component={App} />
+      <Switch>
+        <Route path={'/'} component={App} />
+        <Redirect to={'/'} />
+      </Switch>
     </ConnectedRouter>
   </Provider>
 );

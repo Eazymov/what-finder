@@ -1,11 +1,11 @@
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from '../../store/actions';
+import { setUser } from 'actions';
 
 import component from './component';
 
 interface StateToProps {
-  user: App.User | undefined;
+  user: App.User | null;
 }
 
 interface DispatchToProps {

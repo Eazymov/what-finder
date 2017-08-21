@@ -4,8 +4,8 @@ type MapCoords = App.MapCoords;
 type PlaceResult = google.maps.places.PlaceResult;
 //
 
-import { GMap } from '../mapsAPI';
-import Storage from '../Storage';
+import { GMap } from 'shared/mapsAPI';
+import Storage from 'shared/Storage';
 
 const geolocation = window.navigator.geolocation;
 
@@ -73,6 +73,14 @@ class GoogleMap extends GMap {
     const zoom = this.getZoom();
 
     return { center, zoom };
+  }
+
+  public getParamString (): string {
+    const { center, zoom } = this.getCoords();
+    const lat: string = center.lat.toFixed(7);
+    const lng: string = center.lng.toFixed(7);
+
+    return `@${lat},${lng},${zoom}`;
   }
 }
 

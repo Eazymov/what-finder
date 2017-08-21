@@ -1,3 +1,20 @@
 @import url('reset.styl');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+/*
+ * Components
+ */
+
+@import url('components/app/style');
+@import url('components/map/style');
+@import url('components/placeDescription/style');
+@import url('components/search/style');
+@import url('components/sidebar/style');
+@import url('components/toolbar/style');
+
+/*
+ * Shared components
+ */
+
+@import url('shared/loader/style');

@@ -1,32 +1,30 @@
-// Types
+/**
+ * Types
+ */
 type Autocomplete = google.maps.places.Autocomplete;
 type PlaceResult = google.maps.places.PlaceResult;
+/* *** */
 
-import GoogleMap from '../../models/Map.js';
-//
+import React, { Component } from 'react';
 
-import * as React from 'react';
-import { Component } from 'react';
+import { history } from 'router';
+import { GAutocomplete } from 'shared/mapsAPI';
+import GoogleMap from 'models/Map';
 
-import { history } from '../../router';
-import { GAutocomplete } from '../../mapsAPI';
-
-import './style.styl';
-
-interface MappedProps {
+interface Props {
   map: GoogleMap;
   setPlace: Function;
 }
 
-class SearchComponent extends Component<MappedProps, {}> {
+class SearchComponent extends Component<Props, {}> {
   private input: HTMLInputElement;
   private autocomplete: Autocomplete;
 
-  constructor (props: MappedProps) {
+  constructor (props: Props) {
     super(props);
   }
 
-  render () {
+  render (): JSX.Element {
     return (
       <div className="autocomplete-field">
         <input
@@ -69,7 +67,8 @@ class SearchComponent extends Component<MappedProps, {}> {
 
   private changeRouteParams = (map: GoogleMap): void => {
     const { center, zoom } = map.getCoords();
-    const { lat, lng } = center;
+    const lat: string = center.lat.toFixed(7);
+    const lng: string = center.lng.toFixed(7);
 
     history.push(`/@${lat},${lng},${zoom}`);
   }

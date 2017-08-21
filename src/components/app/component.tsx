@@ -1,22 +1,22 @@
-// Types
+/**
+ * Types
+ */
+
 type User = App.User;
 type JSXElement = JSX.Element;
 
 interface Props {
   setUser: Function;
 }
-//
+/* *** */
 
-import * as React from 'react';
-import { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
-import Storage from '../../Storage';
+import Storage from 'shared/Storage';
 
-import AppMap from '../map';
-import AppSidebar from '../sidebar';
-
-import './style.styl';
+import AppMap from 'components/map';
+import AppSidebar from 'components/sidebar';
 
 class AppComponent extends Component<Props, {}> {
   constructor (props: Props) {
@@ -35,17 +35,7 @@ class AppComponent extends Component<Props, {}> {
     return (
       <section id="App">
         <AppSidebar />
-        <Switch>
-          <Route exact={true} path={'/'} component={AppMap} />
-          <Route
-            exact={true}
-            path={'/:coords'}
-            component={AppMap}
-          />
-          <Route path={'*'}>
-            <Redirect to={'/'} />
-          </Route>
-        </Switch>
+        <Route path={'/:coords?'} component={AppMap} />
       </section>
     );
   }

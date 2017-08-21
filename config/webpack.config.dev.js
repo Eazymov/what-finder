@@ -21,6 +21,10 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -50,13 +54,18 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
-    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx', '.styl', '.css'],
     alias: {
       'react-native': 'react-native-web',
-    },
-    plugins: [
-      new ModuleScopePlugin(paths.appSrc),
-    ],
+      '@': resolve('src'),
+      'store': resolve('src/store'),
+      'router': resolve('src/router'),
+      'models': resolve('src/models'),
+      'shared': resolve('src/shared'),
+      'components': resolve('src/components'),
+      'actions': resolve('src/store/actions'),
+      'actionTypes': resolve('src/store/actionTypes')
+    }
   },
   module: {
     strictExportPresence: true,

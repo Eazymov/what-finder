@@ -1,6 +1,7 @@
-// Types
+/**
+ * Types
+ */
 type MapCoords = App.MapCoords;
-type JSXElement = JSX.Element;
 
 interface State {
   showLoader: boolean;
@@ -9,17 +10,15 @@ interface State {
 interface Props extends RouteComponentProps<{coords: string}> {
   setMap: Function;
 }
-//
+/* *** */
 
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import GoogleMap from '../../models/Map';
-import Storage from '../../Storage';
-
-import AppLoader from '../loader';
-import './style.styl';
+import { history } from 'router';
+import GoogleMap from 'models/Map';
+import Storage from 'shared/Storage';
+import AppLoader from 'shared/loader';
 
 class MapComponent extends Component<Props, State> {
   public state = {
@@ -28,18 +27,17 @@ class MapComponent extends Component<Props, State> {
 
   private map: GoogleMap;
   private element: Element;
-  private initialCoords: MapCoords | undefined;
+  private initialCoords?: MapCoords;
 
   constructor (props: Props) {
     super(props);
   }
 
-  render (): JSXElement {
+  render (): JSX.Element {
     return (
-      <section id="map-holder">
-        <div id="Map" ref={map => map && (this.element = map)} />
+      <div id="Map" ref={map => map && (this.element = map)}>
         <AppLoader show={this.state.showLoader} />
-      </section>
+      </div>
     );
   }
 
@@ -91,6 +89,21 @@ class MapComponent extends Component<Props, State> {
 
     this.map = map;
     this.props.setMap(map);
+
+    this.declareListeners(map);
+  }
+
+  private declareListeners (map: GoogleMap): void {
+    const { handleCoordsChange } = this;
+
+    map.addListener('dragend', handleCoordsChange);
+    map.addListener('zoom_changed', handleCoordsChange);
+  }
+
+  private handleCoordsChange = (): void => {
+    const coordsParam: string = this.map.getParamString();
+
+    history.push(`/${coordsParam}`);
   }
 
   private async setMapCoords () {
