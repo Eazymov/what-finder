@@ -58,6 +58,7 @@ module.exports = {
     alias: {
       'react-native': 'react-native-web',
       '@': resolve('src'),
+      'utils': resolve('src/utils'),
       'store': resolve('src/store'),
       'router': resolve('src/router'),
       'models': resolve('src/models'),

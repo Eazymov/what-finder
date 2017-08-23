@@ -7,7 +7,11 @@ interface State {
   showLoader: boolean;
 }
 
-interface Props extends RouteProps<{coords?: string}> {
+interface RouteParams {
+  coords?: string;
+}
+
+interface Props extends RouteProps<RouteParams> {
   setMap: Function;
 }
 /* *** */
@@ -50,6 +54,12 @@ class MapComponent extends Component<Props, State> {
     this.setMapCoords();
 
     window.onbeforeunload = this.beforeDestroy;
+  }
+  
+  shouldComponentUpdate (): boolean {
+    const isMounted = !!this.map;
+
+    return !isMounted;
   }
 
   private setInitialCoords (): void {
@@ -101,7 +111,8 @@ class MapComponent extends Component<Props, State> {
   }
 
   private handleCoordsChange = (): void => {
-    const params = this.props.match.params;
+    // const coordsRegex = /@[0-9]*,[0-9]*,[0-22]/;
+    const params: RouteParams = this.props.match.params;
     const oldCoords: string = params.coords || '';
     const newCoords: string = this.map.getParamString();
     const oldUrl: string = window.location.pathname;

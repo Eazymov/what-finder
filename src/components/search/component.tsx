@@ -66,6 +66,7 @@ class SearchComponent extends Component<Props, {}> {
   }
 
   private changeRouteParams = (map: GoogleMap): void => {
+    console.log(history);
     /* const params = this.props.match.params;
     const oldCoords: string = params.coords || '';
     const newCoords: string = map.getParamString();
