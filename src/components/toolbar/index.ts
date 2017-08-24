@@ -1,6 +1,6 @@
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from 'actions';
+import { setUser } from 'Actions';
 
 import component from './component';
 

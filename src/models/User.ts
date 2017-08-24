@@ -1,6 +1,8 @@
-// Types
+/**
+ * Types
+ */
 type UserInfo = firebase.UserInfo;
-//
+/* *** */
 
 class User {
   public id: string;

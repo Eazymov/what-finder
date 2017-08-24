@@ -56,16 +56,15 @@ module.exports = {
     ),
     extensions: ['.ts', '.tsx', '.js', '.json', '.jsx', '.styl', '.css'],
     alias: {
-      'react-native': 'react-native-web',
       '@': resolve('src'),
-      'utils': resolve('src/utils'),
-      'store': resolve('src/store'),
-      'router': resolve('src/router'),
-      'models': resolve('src/models'),
-      'shared': resolve('src/shared'),
-      'components': resolve('src/components'),
-      'actions': resolve('src/store/actions'),
-      'actionTypes': resolve('src/store/actionTypes')
+      'Utils': resolve('src/utils'),
+      'Store': resolve('src/store'),
+      'Router': resolve('src/router'),
+      'Models': resolve('src/models'),
+      'Shared': resolve('src/shared'),
+      'Components': resolve('src/components'),
+      'Actions': resolve('src/store/actions'),
+      'ActionTypes': resolve('src/store/actionTypes')
     }
   },
   module: {

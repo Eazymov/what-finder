@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setMap } from 'actions';
+import { setMap } from 'Actions';
 
 import component from './component';
 

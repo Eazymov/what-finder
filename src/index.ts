@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 
-import AppRouter from './router';
+import AppRouter from 'Router';
 
 import './style';
 

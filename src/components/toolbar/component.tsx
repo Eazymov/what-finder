@@ -8,9 +8,9 @@ type AuthData = App.AuthData;
 
 import React, { Component } from 'react';
 
-import base from 'shared/base';
-import Storage from 'shared/Storage';
-import User from 'models/User';
+import base from 'Shared/base';
+import Storage from 'Shared/Storage';
+import User from 'Models/User';
 
 interface Props {
   setUser: Function;

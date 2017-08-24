@@ -8,8 +8,8 @@ type State = App.State;
 import { AnyAction, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import actionTypes from 'actionTypes';
-import initialState from '../initialState';
+import actionTypes from 'ActionTypes';
+import initialState from 'Store/initialState';
 
 function map(state: State = initialState, action: AnyAction): State {
   switch (action.type) {

@@ -1,6 +1,6 @@
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { setPlace } from 'store/actions';
+import { setPlace } from 'Store/actions';
 
 import Component from './component';
 

@@ -32,6 +32,13 @@ const Storage = {
   },
 
   setLastCoords (coords: MapCoords): void {
+    const { center: { lat, lng }, zoom } = coords;
+    const isInvalid = [lat, lng, zoom].some(isNaN);
+
+    if (isInvalid) {
+      return;
+    }
+
     const coordsJSON = JSON.stringify(coords);
 
     localStorage.setItem(`${prefix}.lastCoords`, coordsJSON);

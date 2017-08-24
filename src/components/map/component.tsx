@@ -19,10 +19,12 @@ interface Props extends RouteProps<RouteParams> {
 import React, { Component } from 'react';
 import { RouteComponentProps as RouteProps } from 'react-router';
 
-import { history } from 'router';
-import GoogleMap from 'models/Map';
-import Storage from 'shared/Storage';
-import AppLoader from 'shared/loader';
+import { history } from 'Router';
+import GoogleMap from 'Models/Map';
+import Storage from 'Shared/Storage';
+import AppLoader from 'Shared/loader';
+
+import { getNewRouteCoords } from 'Utils';
 
 class MapComponent extends Component<Props, State> {
   public state = {
@@ -111,12 +113,8 @@ class MapComponent extends Component<Props, State> {
   }
 
   private handleCoordsChange = (): void => {
-    // const coordsRegex = /@[0-9]*,[0-9]*,[0-22]/;
-    const params: RouteParams = this.props.match.params;
-    const oldCoords: string = params.coords || '';
-    const newCoords: string = this.map.getParamString();
-    const oldUrl: string = window.location.pathname;
-    const newUrl: string = oldUrl.replace(oldCoords, newCoords);
+    const coords: MapCoords = this.map.getCoords();
+    const newUrl: string = getNewRouteCoords(coords);
 
     history.push(newUrl);
   }

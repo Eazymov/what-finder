@@ -13,10 +13,10 @@ interface Props {
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import Storage from 'shared/Storage';
+import Storage from 'Shared/Storage';
 
-import AppMap from 'components/map';
-import AppSidebar from 'components/sidebar';
+import AppMap from 'Components/map';
+import AppSidebar from 'Components/sidebar';
 
 class AppComponent extends Component<Props, {}> {
   constructor (props: Props) {

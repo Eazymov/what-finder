@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import App from 'components/app';
-import store from '../store';
+import App from 'Components/app';
+import store from 'Store';
 
 const history = createHistory();
 

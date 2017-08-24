@@ -3,13 +3,16 @@
  */
 type Autocomplete = google.maps.places.Autocomplete;
 type PlaceResult = google.maps.places.PlaceResult;
+type MapCoords = App.MapCoords;
 /* *** */
 
 import React, { Component } from 'react';
 
-import { history } from 'router';
-import { GAutocomplete } from 'shared/mapsAPI';
-import GoogleMap from 'models/Map';
+import { history } from 'Router';
+import { GAutocomplete } from 'Shared/mapsAPI';
+import GoogleMap from 'Models/Map';
+
+import { getNewRouteCoords, getNewRoutePlace } from 'Utils';
 
 interface Props {
   map: GoogleMap;
@@ -47,11 +50,13 @@ class SearchComponent extends Component<Props, {}> {
 
   private onSelect = (): void => {
     const placeInfo: PlaceResult = this.autocomplete.getPlace();
-
     const { map, setPlace } = this.props;
+    const mapCoords: MapCoords = map.getCoords();
+    const placeId: string = placeInfo.place_id;
 
     this.correctMap(map, placeInfo);
-    this.changeRouteParams(map);
+    this.changeRouteCoords(mapCoords);
+    this.changeRoutePlace(placeId);
 
     setPlace(placeInfo);
   }
@@ -65,15 +70,16 @@ class SearchComponent extends Component<Props, {}> {
     map.setZoom(zoom);
   }
 
-  private changeRouteParams = (map: GoogleMap): void => {
-    console.log(history);
-    /* const params = this.props.match.params;
-    const oldCoords: string = params.coords || '';
-    const newCoords: string = map.getParamString();
-    const oldUrl: string = window.location.pathname;
-    const newUrl: string = oldUrl.replace(oldCoords, newCoords);
+  private changeRouteCoords (coords: MapCoords): void {
+    const newUrl: string = getNewRouteCoords(coords);
 
-    history.push(newUrl); */
+    history.push(newUrl);
+  }
+
+  private changeRoutePlace (placeId: string): void {
+    const newUrl: string = getNewRoutePlace(placeId);
+
+    history.push(newUrl);
   }
 }
 
