@@ -1,0 +1,52 @@
+.photos
+  justify-content: space-between
+  flex-flow: row wrap
+  overflow-y: hidden
+  position: relative
+  max-height: 130px
+  padding: 5px
+  display: flex
+  z-index: 0
+
+  &:hover
+    &::before
+      top: 50px
+
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    pointer-events: none
+    background-image: linear-gradient(to top, #fff 0.1%, transparent 25%)
+    z-index: 2
+  
+  .photo
+    box-shadow: 0 1px 3px rgba(#000, .5)
+    justify-content: center
+    align-items: center
+    border-radius: 2px
+    position: relative
+    min-height: 54px
+    overflow: hidden
+    cursor: pointer
+    margin-top: 2%
+    display: flex
+    height: 4.5vw
+    width: 32%
+    /* &::before
+      background-color: rgba(#000, .2)
+      position: absolute
+      transition: .5s
+      height: 100%
+      width: 100%
+      content: ''
+      z-index: 1 */
+
+    img
+      min-height: 100%
+      min-width: 100%
+      transition: .3s
+      z-index: 0

@@ -27,6 +27,18 @@ class SearchComponent extends Component<Props, {}> {
     super(props);
   }
 
+  componentDidMount () {
+    const autocomplete: Autocomplete = new GAutocomplete(this.input);
+
+    this.autocomplete = autocomplete;
+
+    autocomplete.addListener('place_changed', this.onSelect);
+  }
+
+  shouldComponentUpdate (): boolean {
+    return false;
+  }
+
   render (): JSX.Element {
     return (
       <div className="autocomplete-field">
@@ -38,14 +50,6 @@ class SearchComponent extends Component<Props, {}> {
         <span className="material-icons search-icon">search</span>
       </div>
     );
-  }
-
-  componentDidMount () {
-    const autocomplete: Autocomplete = new GAutocomplete(this.input);
-
-    this.autocomplete = autocomplete;
-
-    autocomplete.addListener('place_changed', this.onSelect);
   }
 
   private onSelect = (): void => {

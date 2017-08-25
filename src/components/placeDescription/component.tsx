@@ -2,48 +2,94 @@
  * Types
  */
 
+type Div = HTMLDivElement;
 type Place = App.Place;
-type PlacePhoto = google.maps.places.PlacePhoto;
+type PlacesService = google.maps.places.PlacesService;
+type PlaceServiceStatus = google.maps.places.PlacesServiceStatus;
 
-interface Props {
-  place: Place;
+interface RouteProps {
+  placeId?: string;
 }
 
-interface State {
-
+interface Props extends RouteComponentProps<RouteProps> {
+  place: Place | null;
+  setPlace: Function;
 }
 /* *** */
 
 import React, { Component } from 'react';
+import { RouteComponentProps } from 'react-router';
 
-class PlaceDescriptionComponent extends Component<Props, State> {
+import PlacePhotos from 'Components/placePhotos';
+
+import { GPlacesService, GPlacesServiceStatus } from 'Shared/mapsAPI';
+
+class PlaceDescriptionComponent extends Component<Props, {}> {
   constructor (props: Props) {
     super(props);
   }
-
+  
   render (): JSX.Element {
     const { place } = this.props;
 
     if (!place) {
-      return (<span />);
+      return (<div className="place" />);
     }
-    console.log(place);
 
     return (
       <div className="place">
         <h1 className="place__title">{place.formatted_address}</h1>
-        <div className="place__photos">
-          { place.photos.map((photo: PlacePhoto, index: number) => {
-              const photoOptions = { maxWidth: 150, maxHeight: 100 };
-              return (
-                <span key={index} className="photo">
-                  <img src={photo.getUrl(photoOptions)} alt="" />
-                </span>
-              );
-          }) }
-        </div>
+        <PlacePhotos photos={place.photos} />
       </div>
     );
+  }
+
+  shouldComponentUpdate (newProps: Props): boolean {
+    return Boolean(newProps.place) && this.needUpdate;
+  }
+
+  componentWillMount (): void {
+    this.loadPlaceData();
+  }
+  
+  private get needUpdate (): boolean {
+    const place: Place | null = this.props.place;
+    const routePlaceId = this.props.match.params.placeId;
+    const propsPlaceId = place ? place.place_id : undefined;
+
+    if (!routePlaceId) {
+      return false;
+    }
+
+    if (!propsPlaceId) {
+      return true;
+    }
+    
+    return propsPlaceId !== routePlaceId;
+  }
+
+  private loadPlaceData (): void {
+    const placeId = this.props.match.params.placeId;
+    const element: Div = document.createElement<'div'>('div');
+
+    if (!this.needUpdate) {
+      return;
+    }
+    if (!placeId) {
+      return;
+    }
+
+    const service: PlacesService = new GPlacesService(element);
+
+    service.getDetails({ placeId }, this.setPlace);
+  }
+
+  private setPlace = (place: Place, status: PlaceServiceStatus): void => {
+    if (status !== GPlacesServiceStatus.OK) {
+      return;
+    }
+
+    this.props.setPlace(place);
   }
 }
 

@@ -25,7 +25,14 @@ function getNewRouteCoords (coords: MapCoords): string {
 function getNewRoutePlace (placeId: string): string {
   const newRoute: string = `place/${placeId}`;
   const oldUrl: string = window.location.pathname;
-  const newUrl: string = oldUrl.replace(placeRegex, newRoute);
+
+  let newUrl: string;
+
+  if (placeRegex.test(oldUrl)) {
+    newUrl = oldUrl.replace(placeRegex, newRoute);
+  } else {
+    newUrl = oldUrl + newRoute;
+  }
 
   return newUrl;
 }

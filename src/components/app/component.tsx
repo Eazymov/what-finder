@@ -3,7 +3,6 @@
  */
 
 type User = App.User;
-type JSXElement = JSX.Element;
 
 interface Props {
   setUser: Function;
@@ -31,7 +30,11 @@ class AppComponent extends Component<Props, {}> {
     }
   }
 
-  render(): JSXElement {
+  shouldComponentUpdate (): boolean {
+    return false;
+  }
+
+  render(): JSX.Element {
     return (
       <section id="App">
         <AppSidebar />
