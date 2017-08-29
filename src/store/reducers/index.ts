@@ -8,12 +8,17 @@ type State = App.State;
 import { AnyAction, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import actionTypes from 'ActionTypes';
+import {
+  SET_MAP,
+  SET_USER,
+  SET_PLACE
+} from 'ActionTypes';
+
 import initialState from 'Store/initialState';
 
 function map(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
-    case actionTypes.SET_MAP:
+    case SET_MAP:
       return action.payload;
     default:
       return state;
@@ -22,7 +27,7 @@ function map(state: State = initialState, action: AnyAction): State {
 
 function user(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
-    case actionTypes.SET_USER:
+    case SET_USER:
       return action.payload;
     default:
       return state;
@@ -31,7 +36,7 @@ function user(state: State = initialState, action: AnyAction): State {
 
 function place(state: State = initialState, action: AnyAction): State {
   switch (action.type) {
-    case actionTypes.SET_PLACE:
+    case SET_PLACE:
       return action.payload;
     default:
       return state;

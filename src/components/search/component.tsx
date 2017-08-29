@@ -54,12 +54,16 @@ class SearchComponent extends Component<Props, {}> {
 
   private onSelect = (): void => {
     const placeInfo: PlaceResult = this.autocomplete.getPlace();
+
+    if (!placeInfo.place_id) {
+      return;
+    }
+
     const { map, setPlace } = this.props;
-    const mapCoords: MapCoords = map.getCoords();
     const placeId: string = placeInfo.place_id;
 
     this.correctMap(map, placeInfo);
-    this.changeRouteCoords(mapCoords);
+    this.changeRouteCoords(map);
     this.changeRoutePlace(placeId);
 
     setPlace(placeInfo);
@@ -74,7 +78,8 @@ class SearchComponent extends Component<Props, {}> {
     map.setZoom(zoom);
   }
 
-  private changeRouteCoords (coords: MapCoords): void {
+  private changeRouteCoords (map: GoogleMap): void {
+    const coords: MapCoords = map.getCoords();
     const newUrl: string = getNewRouteCoords(coords);
 
     history.push(newUrl);

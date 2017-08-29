@@ -30,10 +30,6 @@ class AppComponent extends Component<Props, {}> {
     }
   }
 
-  shouldComponentUpdate (): boolean {
-    return false;
-  }
-
   render(): JSX.Element {
     return (
       <section id="App">

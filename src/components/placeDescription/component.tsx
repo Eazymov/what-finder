@@ -20,7 +20,7 @@ interface Props extends RouteComponentProps<RouteProps> {
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import PlacePhotos from 'Components/placePhotos';
+import PlacePhotos from './placePhotos';
 
 import { GPlacesService, GPlacesServiceStatus } from 'Shared/mapsAPI';
 
@@ -30,11 +30,12 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
   }
   
   render (): JSX.Element {
-    const { place } = this.props;
+    const place: Place | null = this.props.place;
 
     if (!place) {
       return (<div className="place" />);
     }
+    console.log(place);
 
     return (
       <div className="place">
