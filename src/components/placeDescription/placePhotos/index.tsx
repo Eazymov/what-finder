@@ -42,7 +42,7 @@ class PlacePhotos extends Component<Props, {}> {
                   <img src={photo.getUrl(photoOptions)} alt="Photo" />
                 </span>
               );
-          }) }
+          } )}
         </div>
         <div className="photos__actions">
           {photos.length > 3 && actionButton}

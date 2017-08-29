@@ -21,6 +21,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 
 import PlacePhotos from './placePhotos';
+import PlaceHours from './placeHours';
 
 import { GPlacesService, GPlacesServiceStatus } from 'Shared/mapsAPI';
 
@@ -35,11 +36,20 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
     if (!place) {
       return (<div className="place" />);
     }
-    console.log(place);
+
+    const phone = place.formatted_phone_number;
+    const hours = place.opening_hours;
 
     return (
       <div className="place">
         <h1 className="place__title">{place.formatted_address}</h1>
+        {hours && PlaceHours(hours)}
+        {phone && (
+          <div className="place__phone">
+            <h3>Phone:</h3>
+            <span>{phone}</span>
+          </div>
+        )}
         <PlacePhotos photos={place.photos} />
       </div>
     );
