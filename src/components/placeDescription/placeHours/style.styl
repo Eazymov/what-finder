@@ -1,15 +1,56 @@
 .hours
-  padding: 0 5px
+  border-top: 1px solid #d7d7d7
+  align-items: flex-start
+  padding: 8px 0
   display: flex
 
-  h3
-    font-weight: 500
-    font-size: 14px
+  &__title
+    align-items: center
+    flex-flow: row
+    display: flex
+
+    i
+      color: rgba(#000, .54)
+      margin-right: 4px
+      font-size: 20px
+
+    h3
+      margin-right: 4px
+      font-weight: 500
+      font-size: 14px
 
   .weekdays
-    display: flex
     flex-flow: column
+    display: flex
 
-    &__weekday
-      font-weight: 400
-      font-size: 12px
+    ul
+      transition-timing-function: step end, step end, ease-out
+      visibility: hidden
+      list-style: none
+      padding-top: 2px
+      transition: .3s
+      opacity: 0
+      height: 0
+
+      &.active
+        animation: opening .5s ease-out forwards
+        animation-delay: .3s
+        visibility: visible
+        height: 124px
+
+      li
+        font-weight: 400
+        font-size: 14px
+
+    &__toggle-btn
+      align-self: flex-start
+      color: #2196f3
+      font-weight: 500
+      margin-top: .5px
+      font-size: 14px
+      cursor: pointer
+      transition: .2s
+
+@keyframes opening
+  to
+    opacity: 1

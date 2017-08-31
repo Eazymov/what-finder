@@ -51,7 +51,7 @@ class PlacePhotos extends Component<Props, {}> {
     );
   }
   
-  private toggle = () => {
+  private toggle = (): void => {
     const expanded: boolean = this.state.expanded;
 
     this.setState({ expanded: !expanded });

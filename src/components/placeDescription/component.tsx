@@ -43,9 +43,10 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
     return (
       <div className="place">
         <h1 className="place__title">{place.formatted_address}</h1>
-        {hours && PlaceHours(hours)}
+        {hours && <PlaceHours hours={hours} />}
         {phone && (
           <div className="place__phone">
+            <i className="material-icons">phone</i>
             <h3>Phone:</h3>
             <span>{phone}</span>
           </div>
