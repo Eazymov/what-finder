@@ -1,0 +1,25 @@
+.tags
+  flex-flow: row wrap
+  padding: 3px 0 1px
+  display: flex
+
+  &__tag
+    box-shadow: 0 1px 3px rgba(#000, .5)
+    background-color: #ccc
+    padding: 3px 6px 2px
+    margin-bottom: 7px
+    border-radius: 7px
+    line-height: 12px
+    font-weight: 500
+    font-size: 11px
+    cursor: pointer
+    transition: .2s
+    color: #333
+    height: 17px
+
+    &:hover
+      background-color: #bbb
+      color: #222
+
+    &:not(:last-of-type)
+      margin-right: 6px

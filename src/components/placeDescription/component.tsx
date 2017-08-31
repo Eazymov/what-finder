@@ -20,8 +20,9 @@ interface Props extends RouteComponentProps<RouteProps> {
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import PlacePhotos from './placePhotos';
+import PlaceTags from './placeTags';
 import PlaceHours from './placeHours';
+import PlacePhotos from './placePhotos';
 
 import { GPlacesService, GPlacesServiceStatus } from 'Shared/mapsAPI';
 
@@ -37,12 +38,15 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
       return (<div className="place" />);
     }
 
-    const phone = place.formatted_phone_number;
+    const types = place.types;
     const hours = place.opening_hours;
+    const phone = place.formatted_phone_number;
+    const photos = place.photos;
 
     return (
       <div className="place">
         <h1 className="place__title">{place.formatted_address}</h1>
+        {types && <PlaceTags tags={types} />}
         {hours && <PlaceHours hours={hours} />}
         {phone && (
           <div className="place__phone">
@@ -51,14 +55,20 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
             <span>{phone}</span>
           </div>
         )}
-        <PlacePhotos photos={place.photos} />
+        {photos && <PlacePhotos photos={photos} />}
       </div>
     );
   }
 
-  shouldComponentUpdate (newProps: Props): boolean {
-    return Boolean(newProps.place) && this.needUpdate;
-  }
+  /* shouldComponentUpdate (newProps: Props): boolean {
+    const shouldUpdate: boolean = Boolean(newProps.place) && this.needUpdate;
+
+    if (shouldUpdate) {
+      this.loadPlaceData();
+    }
+
+    return shouldUpdate;
+  } */
 
   componentWillMount (): void {
     this.loadPlaceData();
@@ -100,6 +110,8 @@ class PlaceDescriptionComponent extends Component<Props, {}> {
     if (status !== GPlacesServiceStatus.OK) {
       return;
     }
+
+    document.title = `${place.formatted_address} - What Finder`;
 
     this.props.setPlace(place);
   }

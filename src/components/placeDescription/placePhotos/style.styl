@@ -3,11 +3,11 @@
   &__list
     border-top: 1px solid #d7d7d7
     justify-content: space-between
+    max-height: calc(100px + 1vw)
     transition: .3s ease-out
     flex-flow: row wrap
     overflow-y: hidden
     position: relative
-    max-height: 115px
     display: flex
     z-index: 0
 
@@ -64,4 +64,5 @@
       transition: .2s
 
       &:hover
+        text-decoration: underline
         color: #1E88E5

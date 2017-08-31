@@ -30,27 +30,34 @@ class PlaceHours extends Component<Props, State> {
     super(props);
   }
 
-  renderToggleButton(): JSX.Element {
-    const expanded: boolean = this.state.expanded;
+  renderToggleButton(openNow: boolean): JSX.Element {
     const toggle: () => void = this.toggle;
+    const expanded: boolean = this.state.expanded;
+    const status: string = openNow ? 'open now' : 'closed now';
+    const text: string = expanded ? 'Hide' :  status;
+    const className: string = expanded ? 'active' : '';
+
     return (
-      <button className="weekdays__toggle-btn" onClick={toggle}>
-        {expanded ? 'Hide' : 'Show'}
+      <button
+        className={`weekdays__toggle-btn ${className}`}
+        onClick={toggle}
+      >
+        {text}
       </button>
     );
   }
 
-  render() {
+  render(): JSX.Element {
     const hours: Hours = this.props.hours;
-    const weekdays: string[] = hours.weekday_text;
     const expanded: boolean = this.state.expanded;
-    console.log(hours);
+    const weekdays: string[] = this.sort(hours.weekday_text);
+    const openNow: boolean = hours.open_now;
   
     return (
       <div className="hours">
         <div className="hours__title">
-          <i className="material-icons">phone</i>
-          <h3>Hours</h3>
+          <i className="material-icons">access_time</i>
+          <h3>Hours:</h3>
         </div>
         <div className="weekdays">
           <ul className={expanded ? 'active' : ''}>
@@ -60,10 +67,20 @@ class PlaceHours extends Component<Props, State> {
               ))
             }
           </ul>
-          {this.renderToggleButton()}
+          {this.renderToggleButton(openNow)}
         </div>
       </div>
     );
+  }
+
+  private sort(weekdays: string[]): string[] {
+    const today: number = (new Date()).getDay() - 1;
+    const result = [
+      ...weekdays.slice(today),
+      ...weekdays.slice(0, today)
+    ];
+
+    return result;
   }
 
   private toggle = (): void => {
