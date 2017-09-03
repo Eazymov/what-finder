@@ -4,12 +4,12 @@ type MapCoords = App.MapCoords;
 type PlaceResult = google.maps.places.PlaceResult;
 //
 
-import { GMap } from 'Shared/mapsAPI';
+import { GAPIMap } from 'Shared/GAPI';
 import Storage from 'Shared/Storage';
 
 const geolocation = window.navigator.geolocation;
 
-class GoogleMap extends GMap {
+class GoogleMap extends GAPIMap {
   constructor (element: Element, params?: MapOptions) {
     super(element, params);
   }

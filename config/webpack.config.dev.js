@@ -62,6 +62,7 @@ module.exports = {
       'Router': resolve('src/router'),
       'Models': resolve('src/models'),
       'Shared': resolve('src/shared'),
+      'Containers': resolve('src/containers'),
       'Components': resolve('src/components'),
       'Actions': resolve('src/store/actions'),
       'ActionTypes': resolve('src/store/actionTypes')

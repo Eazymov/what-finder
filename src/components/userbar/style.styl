@@ -1,0 +1,41 @@
+.userbar
+  justify-content space-between
+  background-color #2196F3
+  align-items center
+  padding 8px 12px
+  font-size 14px
+  display flex
+  color #fff
+  height 54px
+
+  .user
+    width: calc(100% - 97px)
+    align-items center
+    display flex
+    &__photo
+      background-repeat no-repeat
+      background-size cover
+      margin-right: 10px
+      border-radius 50%
+      display block
+      height 38px
+      width 38px
+    &__info
+      max-width: calc(100% - 50px)
+      &--name
+        text-overflow: ellipsis
+        overflow: hidden
+        font-weight 500
+        display: block
+      &--email
+        text-overflow: ellipsis
+        overflow: hidden
+        color: #eee
+        font-size: 13px
+        font-weight 400
+        display: block
+
+  .md-button
+    background #3f51b5
+    color #fff
+    width 85px

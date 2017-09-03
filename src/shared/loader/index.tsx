@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
+interface Style {
+  [key: string]: string | number;
+}
+
 interface Props {
-  show: boolean;
+  show?: boolean;
+  width?: number;
 }
 
 class LoaderComponent extends Component<Props, {}> {
@@ -10,10 +15,12 @@ class LoaderComponent extends Component<Props, {}> {
   }
 
   render () {
-    const display = this.props.show ? 'block' : 'none';
+    const { show, width = 100 } = this.props;
+    const display: string = (show === false) ? 'none' : 'block';
+    const style: Style = { display, width };
 
     return (
-      <div className="loader" style={{ display }}>
+      <div className="loader" style={style}>
         <svg className="circular" viewBox="25 25 50 50">
           <circle
             className="path"

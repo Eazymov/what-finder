@@ -1,0 +1,82 @@
+.hours
+  border-top: 1px solid #d7d7d7
+  align-items: flex-start
+  padding: 8px 0
+  display: flex
+
+  &__title
+    align-items: center
+    flex-flow: row
+    display: flex
+
+    i
+      color: rgba(#000, .54)
+      margin-right: 4px
+      font-size: 20px
+
+    h3
+      margin-right: 4px
+      font-weight: 500
+      font-size: 14px
+      line-height: 18px
+
+      span
+        line-height: 18px
+        font-weight: 400
+        color: #ef6c00
+        font-size: 12px
+        margin-left: 2px
+
+  .weekdays
+    flex-flow: column
+    display: flex
+
+    ul
+      transition-timing-function: step end, step end, ease-out
+      visibility: hidden
+      list-style: none
+      padding-top: 2px
+      transition: .3s
+      opacity: 0
+      height: 0
+
+      &.active
+        animation: opening .5s ease-out forwards
+        animation-delay: .3s
+        visibility: visible
+        padding-top: 3px
+        height: 118px
+
+      li
+        font-weight: 400
+        font-size: 14px
+
+        &:first-of-type
+          font-weight: 500
+
+    &__toggle-btn
+      text-decoration: underline
+      align-self: flex-start
+      position: relative
+      color: #2196f3
+      font-weight: 500
+      font-size: 14px
+      cursor: pointer
+      transition: .2s
+
+      &.active::before
+        display: none
+
+      &::before
+        border: 6px solid
+        border-color: transparent
+        border-top-color: #333
+        transform: scaleX(.7)
+        position: absolute
+        right: -14px
+        content: ''
+        top: 6px
+
+@keyframes opening
+  to
+    opacity: 1

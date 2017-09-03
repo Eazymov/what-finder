@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import AppToolbar from 'Components/toolbar';
-import AppSearch from 'Components/search';
-import AppPlaceDescription from 'Components/placeDescription';
+import ToolbarContainer from 'Containers/toolbar';
+import SearchContainer from 'Containers/search';
+import PlaceContainer from 'Containers/place';
 
 class SidebarComponent extends Component<{}, {}> {
   constructor (props: {}) {
@@ -13,11 +13,11 @@ class SidebarComponent extends Component<{}, {}> {
   render() {
     return (
       <section id="sidebar">
-        <AppToolbar />
-        <AppSearch />
+        <ToolbarContainer />
+        <SearchContainer />
         <Route
           path={'/:coords/place/:placeId'}
-          component={AppPlaceDescription}
+          component={PlaceContainer}
         />
       </section>
     );

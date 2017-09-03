@@ -8,6 +8,8 @@ export declare type GoogleMap = models.Map;
 
 export type Place = google.maps.places.PlaceResult;
 
+export type Review = google.maps.places.PlaceReview;
+
 export interface State {
   user: User | null;
   map: GoogleMap | null;

@@ -8,33 +8,32 @@ const float: string = '[+-]?([0-9]*[.])?[0-9]+';
 const coordsRegex: RegExp = new RegExp(`@${float},${float},${float}`);
 const placeRegex: RegExp = /place\/.*/;
 
-function getNewRouteCoords (coords: MapCoords): string {
-  const pathname: string = window.location.pathname;
+function replaceRouteCoords (route: string, coords: MapCoords): string {
   const newCoordsRoute: string = getRouteParamFromCoords(coords);
-  const [oldCoordsRoute]: string[] = pathname.match(coordsRegex) || [''];
 
-  if (!oldCoordsRoute) {
-    return newCoordsRoute + pathname;
+  let newRoute: string;
+  
+  if (coordsRegex.test(route)) {
+    newRoute = route.replace(coordsRegex, newCoordsRoute);
+  } else {
+    newRoute = newCoordsRoute + route;
   }
 
-  const newUrl: string = pathname.replace(coordsRegex, newCoordsRoute);
-
-  return newUrl;
+  return newRoute;
 }
 
-function getNewRoutePlace (placeId: string): string {
-  const newRoute: string = `place/${placeId}`;
-  const oldUrl: string = window.location.pathname;
+function replaceRoutePlace (route: string, placeId: string): string {
+  const placeParam: string = `place/${placeId}`;
 
-  let newUrl: string;
+  let newRoute: string;
 
-  if (placeRegex.test(oldUrl)) {
-    newUrl = oldUrl.replace(placeRegex, newRoute);
+  if (placeRegex.test(route)) {
+    newRoute = route.replace(placeRegex, placeParam);
   } else {
-    newUrl = oldUrl + newRoute;
+    newRoute = route + placeParam;
   }
 
-  return newUrl;
+  return newRoute;
 }
 
 function getRouteParamFromCoords (coords: MapCoords): string {
@@ -46,7 +45,7 @@ function getRouteParamFromCoords (coords: MapCoords): string {
 }
 
 export {
-  getNewRouteCoords,
-  getNewRoutePlace,
+  replaceRouteCoords,
+  replaceRoutePlace,
   getRouteParamFromCoords
 };
