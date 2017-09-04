@@ -1,29 +1,25 @@
-.comments
+@import url('placeReview/style')
+
+.reviews
+  max-height: 100%
+  overflow: hidden
+  padding: 10px 0 0
 
   &__title
-    padding: 4px 0 12px 30px
-    font-weight: 400
-    font-size: 16px
+    justify-content: center
+    margin-bottom: 4px
+    flex-flow: column
+    display: flex
+    height: 40px
 
-  &__reviews
+    h3
+      padding-left: 45px
+      line-height: 19px
+      font-weight: 400
+      font-size: 16px
+
+  &__list
     list-style: none
-
-    .review
-      display: block
-      margin: 10px 0
-
-      &__author
-        margin-bottom: 2px
-        font-weight: 500
-        color: #2196f3
-        font-size: 13px
-        display: block
-
-        &:hover
-          text-decoration: underline
-
-      &__text
-        color: rgba(#000, .87)
-        font-weight: 400
-        font-size: 12px
-        display: block
+    overflow-y: auto
+    height: calc(100% - 40px)
+    padding: 0 15px

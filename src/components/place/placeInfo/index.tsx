@@ -26,7 +26,9 @@ const PlaceInfo = (props: Props): JSX.Element => {
 
   return (
     <div className={`page info ${active ? 'active' : ''}`}>
-      <h3 className="info__title">{address}</h3>
+      <div className="info__title">
+        <h3>{address}</h3>
+      </div>
       {types && <PlaceTags tags={types} />}
       {hours && <PlaceHours hours={hours} />}
       {phone && (

@@ -15,27 +15,19 @@
       font-size: 20px
 
     h3
+      line-height: 19px
       margin-right: 4px
       font-weight: 500
       font-size: 14px
-      line-height: 18px
-
-      span
-        line-height: 18px
-        font-weight: 400
-        color: #ef6c00
-        font-size: 12px
-        margin-left: 2px
 
   .weekdays
     flex-flow: column
     display: flex
 
     ul
-      transition-timing-function: step end, step end, ease-out
+      transition-timing-function: ease-out, step-end, step-end
       visibility: hidden
       list-style: none
-      padding-top: 2px
       transition: .3s
       opacity: 0
       height: 0
@@ -44,10 +36,11 @@
         animation: opening .5s ease-out forwards
         animation-delay: .3s
         visibility: visible
-        padding-top: 3px
-        height: 118px
+        padding-top: 2px
+        height: 122px
 
       li
+        line-height: 17px
         font-weight: 400
         font-size: 14px
 
@@ -58,6 +51,7 @@
       text-decoration: underline
       align-self: flex-start
       position: relative
+      line-height: 19px
       color: #2196f3
       font-weight: 500
       font-size: 14px

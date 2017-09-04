@@ -61,7 +61,7 @@ class PlaceComponent extends Component<Props, State> {
 
   private changePage = (): void => {
     const curPage: string = this.state.activePage;
-    const nextPage: string = (curPage === 'info') ? 'comments' : 'info';
+    const nextPage: string = (curPage === 'info') ? 'reviews' : 'info';
 
     this.setState({
       activePage: nextPage

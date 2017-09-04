@@ -18,8 +18,8 @@ const PlaceReviews = (props: Props): JSX.Element => {
       <button
         className={`
           material-icons
-          controls__show-comments-btn
-          ${activePage === 'comments' ? '' : 'active'}
+          controls__show-reviews-btn
+          ${activePage === 'reviews' ? '' : 'active'}
         `}
       >
         comment

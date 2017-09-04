@@ -1,0 +1,52 @@
+@import url('rating/style')
+
+.review
+  border-bottom: 1px solid #ddd
+  padding: 8px 0
+  display: flex
+
+  &__avatar
+    margin-right: 6px
+    display: block
+    flex-shrink: 0
+    height: 40px
+    width: 40px
+
+    img
+      width: 100%
+      height: 100%
+
+  &__author
+    line-height: 15px
+    font-weight: 500
+    color: #2196f3
+    font-size: 14px
+    display: block
+    clear: right
+    float: left
+
+    &:hover
+      text-decoration: underline
+
+  .rating
+    float: left
+    clear: left
+
+  &__timeAgo
+    color: rgba(#000, .54)
+    line-height: 16px
+    margin-left: 4px
+    font-weight: 500
+    font-size: 12px
+    float: left
+
+  &__text
+    color: rgba(#000, .87)
+    line-height: 14px
+    font-weight: 400
+    font-size: 12px
+    margin-top: 4px
+    display: block
+    float: left
+    clear: left
+    

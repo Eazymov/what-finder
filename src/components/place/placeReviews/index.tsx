@@ -10,24 +10,29 @@ interface Props {
 
 import React, { Component } from 'react';
 
+import PlaceReview from './placeReview';
+
 class PlaceReviews extends Component<Props, {}> {
+  constructor(props: Props) {
+    super(props);
+  }
+
+  shouldComponentUpdate(): boolean {
+    return false;
+  }
+
   render(): JSX.Element {
     const reviews: Review[] = this.props.reviews;
+    console.log(reviews[0]);
 
     return (
-      <div className="page comments">
-        <h3 className="comments__title">Reviews</h3>
-        <ul className="comments__reviews">
+      <div className="page reviews">
+        <div className="reviews__title">
+          <h3>Reviews</h3>
+        </div>
+        <ul className="reviews__list">
           {reviews.map((review: Review, index: number) => (
-            <li key={index} className="review">
-              <a
-                className="review__author"
-                href={review.author_url}
-              >
-                {review.author_name}
-              </a>
-              <p className="review__text">{review.text}</p>
-            </li>
+            <PlaceReview key={index} review={review} />
           ))}
         </ul>
       </div>
