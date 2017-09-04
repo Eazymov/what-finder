@@ -1,9 +1,26 @@
 .rating
+  flex-flow: row-reverse
   cursor: pointer
+  font-size: 16px
   display: flex
   height: 16px
 
   .star
-    line-height: 16px
-    font-size: 16px
-    color: #ffb300
+    position: relative
+    line-height: 1em
+    color: #eb6e00
+    font-size: 1em
+
+    &::before
+      content: '☆'
+
+    &:hover,
+    &.active
+
+      &::before
+        content: '★'
+
+      & ~ .star::before
+        content: '★'
+
+    

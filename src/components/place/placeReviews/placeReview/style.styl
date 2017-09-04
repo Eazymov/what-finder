@@ -3,7 +3,9 @@
 .review
   border-bottom: 1px solid #ddd
   padding: 8px 0
+  margin: 0 auto
   display: flex
+  width: 270px
 
   &__avatar
     margin-right: 6px
@@ -42,11 +44,30 @@
 
   &__text
     color: rgba(#000, .87)
+    -webkit-hyphens: manual
+    word-break: break-all
+    text-align: justify
+    -ms-hyphens: manual
     line-height: 14px
     font-weight: 400
+    hyphens: manual
     font-size: 12px
     margin-top: 4px
     display: block
     float: left
     clear: left
+
+    .show-more-btn
+      align-self: flex-end
+      line-height: 14px
+      color: #2196f3
+      font-weight: 500
+      margin-left: 4px
+      font-size: 12px
+      cursor: pointer
+      transition: .2s
+
+      &:hover
+        text-decoration: underline
+        color: #1E88E5
     
