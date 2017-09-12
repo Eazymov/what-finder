@@ -41,10 +41,8 @@ class Toolbar extends Component<Props, State> {
     const authMethods: AuthMethod[] = base.authMethods || [];
 
     return (
-      <div className="toolbar">
-        <ul
-          className={expanded ? 'expanded' : ''}
-        >
+      <div className={`toolbar ${expanded ? 'expanded' : ''}`}>
+        <ul>
           { authMethods.map((method: AuthMethod, index: number) => {
               const { name, provider } = method;
               const url = `/icons/${name}.svg`;

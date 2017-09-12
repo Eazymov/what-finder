@@ -33,7 +33,7 @@ import Userbar from 'Components/userbar';
 
 class UserbarContainer extends Component<Props, {}> {
   static propTypes = {
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     setUser: PropTypes.func.isRequired
   };
 

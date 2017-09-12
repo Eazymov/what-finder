@@ -1,0 +1,44 @@
+.scrollbox
+  position relative
+  overflow hidden
+  width 100%
+  
+  .content
+    width calc(100% + 20px)
+    padding-right 20px
+    min-height 100%
+    font-size 20px
+    overflow auto
+    max-height: 100%
+
+    & > div
+      height: 800px
+    
+  .scrollbar
+    border-left 1px solid rgba(#000, .15)
+    background-color transparent
+    position absolute
+    height 100%
+    right 0
+    top 0
+    
+    &:hover .thumb
+      width 8px
+      
+    &::before
+      position absolute
+      height 100%
+      left -20px
+      content ''
+      width 20px
+      top 0
+    
+    .thumb
+      transition width .15s
+      user-select none
+      cursor pointer
+      width 4px
+      left 0
+
+      &:active
+        width 8px

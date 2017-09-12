@@ -1,13 +1,17 @@
 .toolbar
-  box-shadow 0 2px 4px rgba(#000, .35)
+  box-shadow 0 1px 3px rgba(#000, .5)
+  transition-duration .3s
+  transition-timing-function ease-out
+  margin-top -160px
+  flex-shrink: 0
   font-size 14px
+  height: 214px
+  z-index: 4
+  &.expanded
+    margin-top 0
 
   ul
-    margin-top -160px
-    transition-duration .3s
-    transition-timing-function ease-out
-    &.expanded
-      margin-top 0
+    height: 160px
 
     li
       border-bottom 1px solid #ddd
