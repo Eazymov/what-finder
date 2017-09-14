@@ -44,16 +44,16 @@ class PlaceComponent extends Component<Props, State> {
     return (
       <div className="place">
         <DocTitle title={`${address} - What Finder`} />
+        <PlaceInfo
+          place={place}
+          active={activePage === 'info'}
+        />
         {reviews && (
           <PlaceControls
             activePage={activePage}
             changePage={changePage}
           />
         )}
-        <PlaceInfo
-          place={place}
-          active={activePage === 'info'}
-        />
         {reviews && <PlaceReviews reviews={reviews} />}
       </div>
     );

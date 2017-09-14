@@ -69,7 +69,7 @@ class PlaceReview extends Component<Props, State> {
           showFullText: !showFullText
         })}
       >
-        {showFullText ? 'Hide' : 'Show'}
+        {showFullText ? 'Hide' : '...show full'}
       </span>
     );
   }
@@ -81,7 +81,7 @@ class PlaceReview extends Component<Props, State> {
       return text;
     }
 
-    return text.slice(0, 107) + '...';
+    return text.slice(0, 107);
   }
 }
 

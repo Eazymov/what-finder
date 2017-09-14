@@ -11,6 +11,7 @@ interface Props {
 import React, { Component } from 'react';
 
 import PlaceReview from './placeReview';
+import ScrollBox from 'Shared/scrollbox';
 
 class PlaceReviews extends Component<Props, {}> {
   constructor(props: Props) {
@@ -23,19 +24,20 @@ class PlaceReviews extends Component<Props, {}> {
 
   render(): JSX.Element {
     const reviews: Review[] = this.props.reviews;
-    console.log(reviews[0]);
 
     return (
-      <div className="page reviews">
-        <div className="reviews__title">
-          <h3>Reviews</h3>
+      <ScrollBox className="page" color="#2196f3">
+        <div className="reviews">
+          <div className="reviews__title">
+            <h3>Reviews</h3>
+          </div>
+          <ul className="reviews__list">
+            {reviews.map((review: Review, index: number) => (
+              <PlaceReview key={index} review={review} />
+            ))}
+          </ul>
         </div>
-        <ul className="reviews__list">
-          {reviews.map((review: Review, index: number) => (
-            <PlaceReview key={index} review={review} />
-          ))}
-        </ul>
-      </div>
+      </ScrollBox>
     );
   }
 }

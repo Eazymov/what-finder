@@ -27,8 +27,8 @@ const PlaceInfo = (props: Props): JSX.Element => {
   const active: boolean = props.active;
 
   return (
-    <ScrollBox className={`page info ${active ? 'active' : ''}`}>
-      <div>
+    <ScrollBox className={`page ${active ? 'active' : ''}`} color="#2196f3">
+      <div className="info">
         <div className="info__title">
           <h3>{address}</h3>
         </div>
