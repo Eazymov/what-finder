@@ -22,10 +22,13 @@ class ScrollBox extends Component<Props, {}> {
 
   componentDidMount() {
     const { thumb } = this;
-    const { viewportHeight, ratio } = this;
+    const { viewportHeight, contentHeight, ratio } = this;
     const thumbHeight = viewportHeight * ratio;
 
-    thumb.style.height = `${thumbHeight}px`;
+    if (viewportHeight < contentHeight) {
+      thumb.style.height = `${thumbHeight}px`;
+      this.setState({ shouldScroll: true });
+    }
   }
   
   get viewportHeight() {
@@ -42,13 +45,20 @@ class ScrollBox extends Component<Props, {}> {
 
   handleScroll = () => {
     const { content, thumb } = this;
-    const { viewportHeight, ratio } = this;
+    const { viewportHeight, contentHeight, ratio } = this;
+
+    if (viewportHeight >= contentHeight) {
+      this.setState({ shouldScroll: false });
+      return;
+    }
+
     const scrollTop = content.scrollTop;
     const thumbHeight = viewportHeight * ratio;
     const thumbTop = scrollTop * ratio;
 
     thumb.style.transform = `translateY(${thumbTop}px)`;
     thumb.style.height = `${thumbHeight}px`;
+    this.setState({ shouldScroll: true });
   }
 
   scroll = (event: ReactMouseEvent<HTMLDivElement>) => {
@@ -74,7 +84,8 @@ class ScrollBox extends Component<Props, {}> {
   }
 
   render() {
-    const { props } = this;
+    const { props, state } = this;
+    const { shouldScroll } = state;
     const color: string = props.color || '#000';
     const className: string | undefined = props.className;
     const children: ReactNode = props.children;
@@ -89,6 +100,7 @@ class ScrollBox extends Component<Props, {}> {
         </div>
         <div
           className="scrollbar"
+          style={{ display: shouldScroll ? 'block' : 'none' }}
           ref={div => div && (this.scrollbar = div)}
         >
           <div
