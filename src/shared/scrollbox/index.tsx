@@ -12,6 +12,8 @@ interface Props {
 
 import React, { Component } from 'react';
 
+import ResizeSensor from 'resize-sensor';
+
 class ScrollBox extends Component<Props, {}> {
   public content: HTMLDivElement;
   public scrollbar: HTMLDivElement;
@@ -21,14 +23,16 @@ class ScrollBox extends Component<Props, {}> {
   };
 
   componentDidMount() {
-    const { thumb } = this;
     const { viewportHeight, contentHeight, ratio } = this;
     const thumbHeight = viewportHeight * ratio;
 
     if (viewportHeight < contentHeight) {
-      thumb.style.height = `${thumbHeight}px`;
+      this.thumb.style.height = `${thumbHeight}px`;
       this.setState({ shouldScroll: true });
     }
+    // tslint:disable
+    new ResizeSensor(this.content, this.updateScrollBar);
+    // tslint:enable
   }
   
   get viewportHeight() {
@@ -43,13 +47,12 @@ class ScrollBox extends Component<Props, {}> {
     return this.viewportHeight / this.contentHeight;
   }
 
-  handleScroll = () => {
+  updateScrollBar = () => {
     const { content, thumb } = this;
     const { viewportHeight, contentHeight, ratio } = this;
 
     if (viewportHeight >= contentHeight) {
-      this.setState({ shouldScroll: false });
-      return;
+      return this.setState({ shouldScroll: false });
     }
 
     const scrollTop = content.scrollTop;
@@ -87,13 +90,13 @@ class ScrollBox extends Component<Props, {}> {
     const { props, state } = this;
     const { shouldScroll } = state;
     const color: string = props.color || '#000';
-    const className: string | undefined = props.className;
+    const className: string = props.className || '';
     const children: ReactNode = props.children;
 
     return (
       <div className={`scrollbox ${className}`}>
         <div
-          onScroll={this.handleScroll}
+          onScroll={this.updateScrollBar}
           ref={div => div && (this.content = div)}
           className="content"
         >{children}

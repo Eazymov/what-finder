@@ -1,25 +1,36 @@
+@import url('rating/style')
+@import url('placeAvgRate/style')
 @import url('placeReview/style')
 
 .reviews
+  flex-direction: column
+  padding: 10px 0 0
   max-height: 100%
   overflow: hidden
-  padding: 10px 0 0
+  display: flex
+  flex-grow: 1
 
   &__title
-    justify-content: center
+    align-items: center
     margin-bottom: 4px
-    flex-flow: column
+    padding-left: 45px
+    flex-shrink: 0
     display: flex
     height: 40px
 
     h3
-      padding-left: 45px
       line-height: 19px
       font-weight: 400
       font-size: 16px
 
   &__list
-    height: calc(100% - 40px)
-    list-style: none
-    overflow-y: auto
-    padding: 0 15px
+    border-top: 1px solid #ddd
+    flex-direction: column
+    display: flex
+    flex-grow: 1
+  
+    ul
+      height: calc(100% - 40px)
+      list-style: none
+      overflow-y: auto
+      padding: 0 15px

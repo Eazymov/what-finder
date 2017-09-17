@@ -13,6 +13,8 @@ import React, { Component } from 'react';
 import PlaceReview from './placeReview';
 import ScrollBox from 'Shared/scrollbox';
 
+import PlaceAvgRate from './placeAvgRate';
+
 class PlaceReviews extends Component<Props, {}> {
   constructor(props: Props) {
     super(props);
@@ -26,18 +28,19 @@ class PlaceReviews extends Component<Props, {}> {
     const reviews: Review[] = this.props.reviews;
 
     return (
-      <ScrollBox className="page" color="#2196f3">
-        <div className="reviews">
-          <div className="reviews__title">
-            <h3>Reviews</h3>
-          </div>
-          <ul className="reviews__list">
+      <div className="page reviews">
+        <div className="reviews__title">
+          <h3>Reviews</h3>
+        </div>
+        <PlaceAvgRate reviews={reviews} />
+        <ScrollBox className="reviews__list" color="#2196f3">
+          <ul>
             {reviews.map((review: Review, index: number) => (
               <PlaceReview key={index} review={review} />
             ))}
           </ul>
-        </div>
-      </ScrollBox>
+        </ScrollBox>
+      </div>
     );
   }
 }

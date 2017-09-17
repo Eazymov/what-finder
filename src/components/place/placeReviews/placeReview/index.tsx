@@ -14,7 +14,7 @@ interface State {
 
 import React, { Component } from 'react';
 
-import Rating from './rating';
+import Rating from '../rating';
 
 class PlaceReview extends Component<Props, State> {
   state = {

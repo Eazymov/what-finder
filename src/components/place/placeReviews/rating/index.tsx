@@ -3,7 +3,7 @@
  */
 interface Props {
   rating: number;
-  disabled: boolean;
+  disabled?: boolean;
   size?: number;
 }
 
@@ -19,12 +19,13 @@ class Rating extends Component<Props, State> {
     super(props);
 
     this.state = {
-      value: props.rating || 0
+      value: Math.round(props.rating) || 0
     };
   }
 
   public render(): JSX.Element {
-    const disabled: boolean = this.props.disabled;
+    const size: string = `${this.props.size || 16}px`;
+    const disabled: boolean = !!this.props.disabled;
     const pointerEvents: string = disabled ? 'none' : 'auto';
     const value: number = this.state.value;
   
@@ -37,6 +38,10 @@ class Rating extends Component<Props, State> {
             return (
               <span
                 key={key}
+                style={{
+                  fontSize: size,
+                  lineHeight: size,
+                }}
                 className={`star ${className}`}
                 onClick={() => this.setState({
                   value: key

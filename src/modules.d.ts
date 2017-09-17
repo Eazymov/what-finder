@@ -1,6 +1,7 @@
 declare module 'prop-types';
 declare module 'react-document-title';
 declare module 'react-router-dom';
+declare module 'resize-sensor';
 
 declare module 'Components/*';
 declare module 'Containers/*';
