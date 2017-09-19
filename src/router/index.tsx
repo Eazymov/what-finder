@@ -8,7 +8,9 @@ import store from 'Store';
 
 import AppContainer from 'Containers/app';
 
-const history = createHistory();
+const history = createHistory({
+  basename: '/what-finder/',
+});
 
 const AppRouter: JSX.Element = (
   <Provider store={store}>

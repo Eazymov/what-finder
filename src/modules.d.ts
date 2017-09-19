@@ -7,6 +7,7 @@ declare module 'Components/*';
 declare module 'Containers/*';
 
 declare module 'Actions';
+declare module 'ActionTypes';
 declare module 'Models/*';
 declare module 'Router';
 declare module 'Shared/*';
