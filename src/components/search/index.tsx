@@ -17,6 +17,7 @@ import { replaceRouteCoords, replaceRoutePlace } from 'Utils';
 interface Props {
   map: GoogleMap;
   setPlace: Function;
+  location: Location;
 }
 
 class SearchComponent extends Component<Props, {}> {
@@ -84,7 +85,7 @@ class SearchComponent extends Component<Props, {}> {
   }
 
   private updateRoute (coords: MapCoords, placeId: string): void {
-    let route: string = window.location.pathname;
+    let route: string = this.props.location.pathname;
     
     route = replaceRouteCoords(route, coords);
     route = replaceRoutePlace(route, placeId);

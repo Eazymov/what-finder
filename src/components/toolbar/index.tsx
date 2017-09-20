@@ -45,7 +45,7 @@ class Toolbar extends Component<Props, State> {
         <ul>
           { authMethods.map((method: AuthMethod, index: number) => {
               const { name, provider } = method;
-              const url = `/icons/${name}.svg`;
+              const url = `icons/${name}.svg`;
               const backgroundImage = `url(${url})`;
 
               return (

@@ -20,6 +20,7 @@ interface DispatchToProps {
 import React, { Component } from 'react';
 import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { history } from 'Router';
 import PropTypes from 'prop-types';
 
 import { setPlace } from 'Store/actions';
@@ -39,7 +40,7 @@ class SearchContainer extends Component<Props, {}> {
 
   public render(): JSX.Element {
     return (
-      <Search {...this.props} />
+      <Search {...this.props} location={history.location} />
     );
   }
 }

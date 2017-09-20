@@ -121,7 +121,7 @@ class GoogleMapComponent extends Component<Props, State> {
 
   private handleCoordsChange = (): void => {
     const coords: MapCoords = this.map.getCoords();
-    const oldRoute: string = window.location.pathname;
+    const oldRoute: string = this.props.location.pathname;
     const newRoute: string = replaceRouteCoords(oldRoute, coords);
 
     history.replace(newRoute);

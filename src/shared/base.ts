@@ -7,7 +7,6 @@ import * as firebase from 'firebase';
 
 const base: Database = firebase.initializeApp({
   apiKey: 'AIzaSyC-SguVlp91tIuIM9pBY4-yTqM9_us8jrg',
-  authDomain: 'react-maps-api-app.firebaseapp.com',
   databaseURL: 'https://react-maps-api-app.firebaseio.com',
 });
 
