@@ -8,19 +8,22 @@ interface RouteParams {
 }
 
 interface Props extends RouteProps<RouteParams> {
+  setActiveZone: (zone: string) => void;
   setMap: (map: GoogleMap) => void;
 }
 
 interface DispatchToProps {
-  setMap: Function;
+  setActiveZone: (zone: string) => void;
+  setMap: (map: GoogleMap) => void;
 }
 /* *** */
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch, Action, bindActionCreators } from 'redux';
 import { RouteComponentProps as RouteProps } from 'react-router';
 import PropTypes from 'prop-types';
-import { setMap } from 'Actions';
+import { setMap, setActiveZone } from 'Actions';
 
 import GoogleMapComponent from 'Components/googleMap';
 
@@ -40,8 +43,9 @@ class GoogleMapContainer extends Component<Props, {}> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  setMap: (map: GoogleMap) => dispatch(setMap(map))
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+  setMap: bindActionCreators(setMap, dispatch),
+  setActiveZone: bindActionCreators(setActiveZone, dispatch),
 });
 
 export default connect<undefined, DispatchToProps, {}>(

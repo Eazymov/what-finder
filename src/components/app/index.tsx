@@ -5,7 +5,7 @@
 type User = App.User;
 
 interface Props {
-  setUser: Function;
+  setUser: (user: User) => void;
 }
 /* *** */
 
@@ -16,19 +16,19 @@ import DocTitle from 'react-document-title';
 
 import Storage from 'Shared/Storage';
 
-import AppSidebar from 'Components/sidebar';
+import ToolbarContainer from 'Containers/toolbar';
+import SearchContainer from 'Containers/search';
+import PlaceContainer from 'Containers/place';
 import GoogleMapContainer from 'Containers/googleMap';
+
+import { isMobileDevice } from 'Utils';
 
 class AppComponent extends Component<Props, {}> {
   static propTypes = {
     setUser: PropTypes.func.isRequired
   };
 
-  constructor (props: Props) {
-    super(props);
-  }
-
-  componentWillMount() {
+  public componentWillMount (): void {
     const savedUser: User | undefined = Storage.getUser();
 
     if (savedUser !== undefined) {
@@ -36,12 +36,38 @@ class AppComponent extends Component<Props, {}> {
     }
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
+    return isMobileDevice() ? this.renderForMobile() : this.renderForDesktop();
+  }
+
+  private renderForDesktop (): JSX.Element {
     return (
       <main id="App">
         <DocTitle title="What Finder" />
-        <AppSidebar />
+        <section id="sidebar">
+          <ToolbarContainer />
+          <SearchContainer />
+          <Route
+            path={'/:coords/place/:placeId'}
+            component={PlaceContainer}
+          />
+        </section>
         <Route path={'/:coords?'} component={GoogleMapContainer} />
+      </main>
+    );
+  }
+
+  private renderForMobile (): JSX.Element {
+    return (
+      <main id="App">
+        <DocTitle title="What Finder" />
+        <ToolbarContainer />
+        <SearchContainer />
+        <Route path={'/:coords?'} component={GoogleMapContainer} />
+        <Route
+          path={'/:coords/place/:placeId'}
+          component={PlaceContainer}
+        />
       </main>
     );
   }

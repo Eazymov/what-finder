@@ -12,7 +12,8 @@ interface RouteParams {
 }
 
 interface Props extends RouteProps<RouteParams> {
-  setMap: Function;
+  setActiveZone: (zone: string) => void;
+  setMap: (map: GoogleMap) => void;
 }
 /* *** */
 
@@ -46,7 +47,11 @@ class GoogleMapComponent extends Component<Props, State> {
 
   public render (): JSX.Element {
     return (
-      <div id="Map" ref={map => map && (this.element = map)}>
+      <div
+        id="Map"
+        ref={map => map && (this.element = map)}
+        onClick={() => this.props.setActiveZone('map')}
+      >
         <AppLoader show={this.state.showLoader} />
       </div>
     );

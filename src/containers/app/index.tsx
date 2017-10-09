@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setUser } from 'Actions';
 
-import App from 'Components/app';
+import AppComponent from 'Components/app';
 
 class AppContainer extends Component<Props, {}> {
   static propTypes = {
@@ -31,7 +31,7 @@ class AppContainer extends Component<Props, {}> {
 
   public render(): JSX.Element {
     return (
-      <App {...this.props} />
+      <AppComponent {...this.props} />
     );
   }
 }

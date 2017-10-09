@@ -21,6 +21,7 @@ export interface State {
   user: User | null;
   map: GoogleMap | null;
   place: Place | null;
+  activeZone: string;
 }
 
 declare type AuthMethod = {

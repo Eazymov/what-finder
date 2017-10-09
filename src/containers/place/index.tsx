@@ -15,16 +15,20 @@ interface RouteProps {
 }
 
 interface Props extends RouteComponentProps<RouteProps> {
+  activeZone: string;
   place: Place | null;
-  setPlace: Function;
+  setPlace: (place: Place) => void;
+  setActiveZone: (zone: string) => void;
 }
 
 interface StateToProps {
+  activeZone: string;
   place: Place | null;
 }
 
 interface DispatchToProps {
-  setPlace: Function;
+  setPlace: (place: Place) => void;
+  setActiveZone: (zone: string) => void;
 }
 /* *** */
 
@@ -34,7 +38,7 @@ import { connect } from 'react-redux';
 import { Dispatch, Action, bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { setPlace } from 'Actions';
+import { setPlace, setActiveZone } from 'Actions';
 import { GAPIPlacesService, GAPIPlacesServiceStatus } from 'Shared/GAPI';
 
 import LoaderComponent from 'Shared/loader';
@@ -43,7 +47,8 @@ import PlaceComponent from 'Components/place';
 class PlaceContainer extends Component<Props, State> {
   static propTypes = {
     place: PropTypes.object,
-    setPlace: PropTypes.func.isRequired
+    setPlace: PropTypes.func.isRequired,
+    setActiveZone: PropTypes.func.isRequired
   };
 
   state = {
@@ -55,11 +60,17 @@ class PlaceContainer extends Component<Props, State> {
   }
 
   public render(): JSX.Element {
-    const place: Place | null = this.props.place;
-    const loading: boolean = this.state.loading;
+    const { props, state } = this;
+    const activeZone: string = props.activeZone;
+    const isActive: boolean = activeZone === 'place';
+    const place: Place | null = props.place;
+    const loading: boolean = state.loading;
 
     return (
-      <div className="place__container">
+      <div
+        className={`place__container ${isActive && 'active'}`}
+        onClick={() => props.setActiveZone('place')}
+      >
         {
           (loading || !place)
           ? <LoaderComponent width={60} />
@@ -91,6 +102,14 @@ class PlaceContainer extends Component<Props, State> {
     newProps: Props,
     newState: State
   ): boolean {
+    const oldActiveZone: string = this.props.activeZone;
+    const newActiveZone: string = newProps.activeZone;
+    const activeZoneIsChanged: boolean = oldActiveZone !== newActiveZone;
+
+    if (activeZoneIsChanged) {
+      return true;
+    }
+
     const newPlace: Place | null = newProps.place;
     const newPlaceId: string = newPlace ? newPlace.place_id : '';
     const placeChanged: boolean = this.placeChanged(newPlaceId);
@@ -133,11 +152,13 @@ class PlaceContainer extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: App.State) => ({
+  activeZone: state.activeZone,
   place: state.place
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-  setPlace: bindActionCreators(setPlace, dispatch)
+  setPlace: bindActionCreators(setPlace, dispatch),
+  setActiveZone: bindActionCreators(setActiveZone, dispatch),
 });
 
 export default connect<StateToProps, DispatchToProps, {}>(

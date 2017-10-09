@@ -44,8 +44,15 @@ function getRouteParamFromCoords (coords: MapCoords): string {
   return `@${lat},${lng},${zoom}`;
 }
 
+function isMobileDevice (): boolean {
+  /* tslint:disable */
+  return /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/.test(navigator.userAgent);
+  /* tslint:enable */
+}
+
 export {
   replaceRouteCoords,
   replaceRoutePlace,
-  getRouteParamFromCoords
+  getRouteParamFromCoords,
+  isMobileDevice,
 };

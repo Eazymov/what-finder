@@ -11,7 +11,8 @@ import { routerReducer } from 'react-router-redux';
 import {
   SET_MAP,
   SET_USER,
-  SET_PLACE
+  SET_PLACE,
+  SET_ACTIVE_ZONE,
 } from 'ActionTypes';
 
 import initialState from 'Store/initialState';
@@ -43,11 +44,21 @@ function place(state: State = initialState, action: AnyAction): State {
   }
 }
 
+function activeZone (state: State = initialState, action: AnyAction): State {
+  switch (action.type) {
+    case SET_ACTIVE_ZONE:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 const reducer = combineReducers({
   map,
   user,
   place,
   routerReducer,
+  activeZone,
 });
 
 export default reducer;
