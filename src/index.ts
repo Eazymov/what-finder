@@ -2,8 +2,8 @@ import { render } from 'react-dom';
 
 import AppRouter from 'Router';
 
-import './style';
+import './style.styl';
 
-const root: Element | null = document.querySelector('#root');
+const root = document.querySelector('#root');
 
 render(AppRouter, root);

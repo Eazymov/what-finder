@@ -54,7 +54,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
-    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx', '.styl', '.css'],
+    extensions: [ '.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': resolve('src'),
       'Utils': resolve('src/utils'),
@@ -72,12 +72,12 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         loader: require.resolve('tslint-loader'),
         enforce: 'pre',
         include: paths.appSrc,
       }, {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: require.resolve('source-map-loader'),
         enforce: 'pre',
         include: paths.appSrc,

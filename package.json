@@ -5,7 +5,6 @@
   "homepage": "https://eazymov.github.io/what-finder",
   "dependencies": {
     "@types/googlemaps": "^3.26.17",
-    "@types/jest": "^20.0.6",
     "@types/node": "^8.0.19",
     "@types/react": "^16.0.0",
     "@types/react-dom": "^15.5.2",
@@ -36,7 +35,6 @@
     "fs-extra": "3.0.1",
     "gh-pages": "^1.0.0",
     "html-webpack-plugin": "2.28.0",
-    "jest": "20.0.3",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
@@ -50,7 +48,6 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "sw-precache-webpack-plugin": "0.9.1",
-    "ts-jest": "^20.0.7",
     "ts-loader": "^2.2.1",
     "tslint": "^5.2.0",
     "tslint-loader": "^3.5.3",
@@ -68,44 +65,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
-  },
-  "jest": {
-    "mapCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
-      "^(?!.*\\.(css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "/home/eazymov/Documents/projects/what-finder/tsconfig.test.json"
-      }
-    }
   },
   "babel": {
     "presets": [
