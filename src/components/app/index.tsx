@@ -1,33 +1,19 @@
-/**
- * Types
- */
+import './style.styl'
 
-type User = App.User;
+import React, { Component } from 'react'
+import { bindActionCreators, Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import { setUser } from 'Actions'
+
+import AppComponent from './component'
+import Storage from 'Shared/Storage'
+import { User } from 'Types'
 
 interface Props {
-  setUser: (user: User) => void;
+  setUser: (user: User) => void
 }
-/* *** */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
-import DocTitle from 'react-document-title';
-
-import Storage from 'Shared/Storage';
-
-import ToolbarContainer from 'Containers/toolbar';
-import SearchContainer from 'Containers/search';
-import PlaceContainer from 'Containers/place';
-import GoogleMapContainer from 'Containers/googleMap';
-
-import { isMobileDevice } from 'Utils';
-
-class AppComponent extends Component<Props, {}> {
-  static propTypes = {
-    setUser: PropTypes.func.isRequired
-  };
-
+class AppContainer extends Component<Props> {
   public componentWillMount (): void {
     const savedUser: User | undefined = Storage.getUser();
 
@@ -36,41 +22,20 @@ class AppComponent extends Component<Props, {}> {
     }
   }
 
-  public render(): JSX.Element {
-    return isMobileDevice() ? this.renderForMobile() : this.renderForDesktop();
-  }
-
-  private renderForDesktop (): JSX.Element {
+  public render (): JSX.Element {
     return (
-      <main id="App">
-        <DocTitle title="What Finder" />
-        <section id="sidebar">
-          <ToolbarContainer />
-          <SearchContainer />
-          <Route
-            path={'/:coords/place/:placeId'}
-            component={PlaceContainer}
-          />
-        </section>
-        <Route path={'/:coords?'} component={GoogleMapContainer} />
-      </main>
-    );
-  }
-
-  private renderForMobile (): JSX.Element {
-    return (
-      <main id="App">
-        <DocTitle title="What Finder" />
-        <ToolbarContainer />
-        <SearchContainer />
-        <Route path={'/:coords?'} component={GoogleMapContainer} />
-        <Route
-          path={'/:coords/place/:placeId'}
-          component={PlaceContainer}
-        />
-      </main>
-    );
+      <AppComponent />
+    )
   }
 }
 
-export default AppComponent;
+export {
+  Props
+}
+
+export default connect<undefined, Props, undefined>(
+  undefined,
+  (dispatch: Dispatch<any>) => bindActionCreators({
+    setUser
+  }, dispatch)
+)(AppContainer)

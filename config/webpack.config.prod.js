@@ -85,7 +85,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx', '.styl', '.css'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.styl'],
     alias: {
       '@': resolve('src'),
       'Utils': resolve('src/utils'),
@@ -93,10 +93,11 @@ module.exports = {
       'Router': resolve('src/router'),
       'Models': resolve('src/models'),
       'Shared': resolve('src/shared'),
-      'Containers': resolve('src/containers'),
       'Components': resolve('src/components'),
       'Actions': resolve('src/store/actions'),
-      'ActionTypes': resolve('src/store/actionTypes')
+      'ActionTypes': resolve('src/store/actionTypes'),
+      'variables.styl': resolve('src/variables.styl'),
+      'mixins.styl': resolve('src/mixins.styl')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

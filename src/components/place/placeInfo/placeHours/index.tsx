@@ -13,13 +13,8 @@ interface State {
 /* *** */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class PlaceHours extends Component<Props, State> {
-  static PropTypes = {
-    hours: PropTypes.array.isRequired
-  };
-
   public state = {
     expanded: false
   };

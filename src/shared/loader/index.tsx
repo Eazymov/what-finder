@@ -1,40 +1,31 @@
-import React, { Component } from 'react';
+import './style.styl'
 
-interface Style {
-  [key: string]: string | number;
-}
+import React from 'react'
 
 interface Props {
-  show?: boolean;
-  width?: number;
+  show?: boolean
+  width?: number
 }
 
-class LoaderComponent extends Component<Props, {}> {
-  constructor (props: Props) {
-    super(props);
-  }
+const LoaderComponent = ({ show, width = 100 }: Props) => {
+  const display: string = !show ? 'none' : 'block'
+  const style = { display, width }
 
-  render () {
-    const { show, width = 100 } = this.props;
-    const display: string = (show === false) ? 'none' : 'block';
-    const style: Style = { display, width };
-
-    return (
-      <div className="loader" style={style}>
-        <svg className="circular" viewBox="25 25 50 50">
-          <circle
-            className="path"
-            cx="50"
-            cy="50"
-            r="20"
-            fill="none"
-            strokeWidth="2"
-            strokeMiterlimit="10"
-          />
-        </svg>
-      </div>
-    );
-  }
+  return (
+    <div className="loader" style={style}>
+      <svg className="circular" viewBox="25 25 50 50">
+        <circle
+          className="path"
+          cx="50"
+          cy="50"
+          r="20"
+          fill="none"
+          strokeWidth="2"
+          strokeMiterlimit="10"
+        />
+      </svg>
+    </div>
+  )
 }
 
-export default LoaderComponent;
+export default LoaderComponent

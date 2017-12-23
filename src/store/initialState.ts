@@ -1,8 +1,4 @@
-/**
- * Types
- */
-type State = App.State;
-/* *** */
+import { State } from 'Types';
 
 const initialState: State = {
   user: null,

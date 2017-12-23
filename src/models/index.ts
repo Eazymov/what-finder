@@ -1,7 +1,12 @@
-import Map from './Map';
-import User from './User';
+import GoogleMap from './GoogleMap'
+import User from './User'
 
 export {
-  Map,
+  GoogleMap,
   User,
-};
+}
+
+export default {
+  GoogleMap,
+  User,
+}

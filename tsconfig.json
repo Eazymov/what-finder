@@ -12,8 +12,27 @@
     "allowJs": false,
     "strict": true,
     "jsx": "react",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "paths": {
-      "types": ["./types"]
+      "Types": ["./types"],
+      "@/*": ["src/*"],
+      "Utils": ["src/utils"],
+      "Utils/*": ["src/utils/*"],
+      "Store": ["src/store"],
+      "Store/*": ["src/store/*"],
+      "Router": ["src/router"],
+      "Router/*": ["src/router/*"],
+      "Models": ["src/models"],
+      "Models/*": ["src/models/*"],
+      "Shared": ["src/shared"],
+      "Shared/*": ["src/shared/*"],
+      "Components": ["src/components"],
+      "Components/*": ["src/components/*"],
+      "Actions": ["src/store/actions"],
+      "Actions/*": ["src/store/actions/*"],
+      "ActionTypes": ["src/store/actionTypes"]
     },
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,

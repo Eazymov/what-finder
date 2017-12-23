@@ -1,17 +1,10 @@
-html,
-body
-  font-family Roboto, Noto sans, Noto, sans-serif
-  color rgba(#000, .87)
+#root
   min-height: 500px
   min-width 375px
-  font-size 16px
-  height 100%
+  height 100vh
   width 100%
 
-#root
-  height: 100%
-
-#App
+.App
   display flex
   height: 100%
 
@@ -19,7 +12,7 @@ body
     flex-flow: column
   }
 
-  #sidebar
+  &-sidebar
     box-shadow 1px 0 3px rgba(#000, .3)
     border-right 1px solid #2196F3
     flex-flow: column
@@ -30,20 +23,3 @@ body
     flex-grow 0
     width 25vw
     z-index 5
-
-.md-button
-  box-shadow: 0 1px 3px rgba(#000, .5)
-  text-transform uppercase
-  vertical-align middle
-  border-radius 2px
-  text-align center
-  line-height 36px
-  letter-spacing 0
-  font-weight 500
-  font-size 14px
-  cursor pointer
-  padding 0 16px
-  transition .2s
-  height: 36px
-  &:hover
-    box-shadow 0 2px 5px rgba(#000, .3)

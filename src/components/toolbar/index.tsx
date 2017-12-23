@@ -1,104 +1,29 @@
-/**
- * Types
- */
-type AuthProvider = firebase.auth.AuthProvider;
-type AuthMethod = App.AuthMethod;
-type AuthData = App.AuthData;
-/* *** */
+import './style.styl'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { Action, Dispatch, bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { setUser } from 'Actions'
 
-import UserbarContainer from 'Containers/userbar';
-
-import base from 'Shared/base';
-import Storage from 'Shared/Storage';
-import User from 'Models/User';
+import Toolbar from './component'
 
 interface Props {
   setUser: Function;
 }
 
-interface State {
-  expanded: boolean;
-}
-
-class Toolbar extends Component<Props, State> {
-  static propTypes = {
-    setUser: PropTypes.func.isRequired
-  };
-
-  public state = {
-    expanded: false
-  };
-
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render(): JSX.Element {
-    const expanded: boolean = this.state.expanded;
-    const authMethods: AuthMethod[] = base.authMethods || [];
-
+class ToolbarContainer extends Component<Props> {
+  public render(): JSX.Element {
     return (
-      <div className={`toolbar ${expanded ? 'expanded' : ''}`}>
-        <ul>
-          { authMethods.map((method: AuthMethod, index: number) => {
-              const repo: string = location.pathname.split('/')[1];
-              const { name, provider } = method;
-              const url = `${repo ? `/${repo}` : ''}/icons/${name}.svg`;
-              const backgroundImage = `url(${url})`;
-
-              return (
-                <li
-                  key={index}
-                  onClick={() => this.authenticate(provider)}
-                >
-                  <i
-                    className="icon"
-                    style={{ backgroundImage }}
-                  />
-                  Log in with <strong>{name}</strong>
-                </li>
-              );
-            }) }
-        </ul>
-        <UserbarContainer
-          expanded={expanded}
-          toggleList={this.toggleList}
-        />
-      </div>
-    );
-  }
-
-  private authenticate = (provider: AuthProvider): void => {
-    base
-      .auth()
-      .signInWithPopup(provider)
-      .then(this.authHandler)
-      .catch(console.error);
-  }
-
-  private authHandler = (authData: AuthData): void => {
-    const [providerData] = authData.user.providerData;
-
-    if (!providerData) {
-      return;
-    }
-
-    const user = new User(providerData);
-
-    Storage.setUser(user);
-
-    this.props.setUser(user);
-    this.setState({ expanded: false });
-  }
-
-  private toggleList = (): void => {
-    const expanded = !this.state.expanded;
-
-    this.setState({ expanded });
+      <Toolbar {...this.props} />
+    )
   }
 }
 
-export default Toolbar;
+const dispatchToProps = (dispatch: Dispatch<Action>) => bindActionCreators({
+  setUser
+}, dispatch)
+
+export default connect<undefined, Props, {}>(
+  undefined,
+  dispatchToProps
+)(ToolbarContainer)

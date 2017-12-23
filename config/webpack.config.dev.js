@@ -54,7 +54,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
-    extensions: [ '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.styl'],
     alias: {
       '@': resolve('src'),
       'Utils': resolve('src/utils'),
@@ -62,10 +62,11 @@ module.exports = {
       'Router': resolve('src/router'),
       'Models': resolve('src/models'),
       'Shared': resolve('src/shared'),
-      'Containers': resolve('src/containers'),
       'Components': resolve('src/components'),
       'Actions': resolve('src/store/actions'),
-      'ActionTypes': resolve('src/store/actionTypes')
+      'ActionTypes': resolve('src/store/actionTypes'),
+      'variables.styl': resolve('src/variables.styl'),
+      'mixins.styl': resolve('src/mixins.styl')
     }
   },
   module: {

@@ -1,73 +1,57 @@
+import './style.styl'
+
 /**
  * Types
  */
-type User = App.User;
+import { User, State } from 'Types'
 
-interface Props {
-  user: User | null;
+interface OwnProps {
   expanded: boolean;
-  setUser: (user: User | null) => void;
   toggleList: () => void;
+}
+
+interface Props extends OwnProps {
+  user: User;
+  setUser: (user: User | null) => void;
+}
+
+interface StateToProps {
+  user: App.User | null;
+}
+
+interface DispatchToProps {
+  setUser: Function;
 }
 /* *** */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Action, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { setUser } from 'Actions';
 
-import Storage from 'Shared/Storage';
+import Userbar from './component';
 
-class Userbar extends Component<Props, {}> {
-  static propTypes = {
-    user: PropTypes.object,
-    expanded: PropTypes.bool.isRequired,
-    setUser: PropTypes.func.isRequired,
-    toggleList: PropTypes.func.isRequired
-  };
-
+class UserbarContainer extends Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
 
   public render(): JSX.Element {
-    const user: User | null = this.props.user;
-    const userExists: boolean = Boolean(user);
-
     return (
-      <div className="userbar">
-        { user ?
-          <div className="user">
-            <i
-              className="user__photo"
-              style={{ backgroundImage: `url(${user.photoURL})` }}
-            />
-            <div className="user__info">
-              <span className="user__info--name">{user.name}</span>
-              <span className="user__info--email">{user.email}</span>
-            </div>
-          </div>
-          : <span>You aren't logged in</span> }
-        {this.renderButton(userExists)}
-      </div>
+      <Userbar {...this.props} />
     );
-  }
-
-  private renderButton(userExists: boolean): JSX.Element {
-    const expanded: boolean = this.props.expanded;
-    const onClick = userExists ? this.logout : this.props.toggleList;
-    const buttonText = expanded ? 'Cancel' : 'Log in';
-  
-    return (
-      <button onClick={onClick} className="md-button">
-        {userExists ? 'logout' : buttonText}
-      </button>
-    );
-  }
-
-  private logout = (): void => {
-    Storage.removeUser();
-
-    this.props.setUser(null);
   }
 }
 
-export default Userbar;
+const stateToProps = (state: State) => ({
+  user: state.user
+});
+
+const dispatchToProps = (dispatch: Dispatch<Action>) => ({
+  setUser: (user: User) => dispatch(setUser(user))
+});
+
+export default connect<StateToProps, DispatchToProps, OwnProps>(
+  stateToProps,
+  dispatchToProps
+)(UserbarContainer);

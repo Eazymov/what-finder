@@ -10,13 +10,8 @@ interface Props {
 /* *** */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class PlacePhotos extends Component<Props, {}> {
-  static propTypes = {
-    photos: PropTypes.array.isRequired
-  };
-
   public state = {
     expanded: false
   };

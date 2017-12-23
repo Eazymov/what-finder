@@ -1,12 +1,4 @@
-/**
- * Types
- */
-
-type State = App.State;
-/* *** */
-
-import { AnyAction, combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { combineReducers, Reducer } from 'redux';
 
 import {
   SET_MAP,
@@ -14,50 +6,51 @@ import {
   SET_PLACE,
   SET_ACTIVE_ZONE,
 } from 'ActionTypes';
+import { Action } from 'Actions';
+import { State } from 'Types';
 
 import initialState from 'Store/initialState';
 
-function map(state: State = initialState, action: AnyAction): State {
+const map = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case SET_MAP:
       return action.payload;
     default:
       return state;
   }
-}
+};
 
-function user(state: State = initialState, action: AnyAction): State {
+const user = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case SET_USER:
       return action.payload;
     default:
       return state;
   }
-}
+};
 
-function place(state: State = initialState, action: AnyAction): State {
+const place = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case SET_PLACE:
       return action.payload;
     default:
       return state;
   }
-}
+};
 
-function activeZone (state: State = initialState, action: AnyAction): State {
+const activeZone = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case SET_ACTIVE_ZONE:
       return action.payload;
     default:
       return state;
   }
-}
+};
 
-const reducer = combineReducers({
+const reducer: Reducer<State> = combineReducers({
   map,
   user,
   place,
-  routerReducer,
   activeZone,
 });
 

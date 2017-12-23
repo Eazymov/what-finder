@@ -1,9 +1,8 @@
-import { render } from 'react-dom';
+import './style.styl'
 
-import AppRouter from 'Router';
+import { render } from 'react-dom'
+import AppRouter from 'Router'
 
-import './style.styl';
+const root = document.querySelector('#root')
 
-const root = document.querySelector('#root');
-
-render(AppRouter, root);
+render(AppRouter, root)

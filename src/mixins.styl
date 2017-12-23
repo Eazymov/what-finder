@@ -1,0 +1,28 @@
+@import '~variables.styl'
+
+pseudo($content = '', $position = absolute, $display = block)
+  position $position
+  content $content
+  display $display
+
+elevation($value = 1px, $color = $grey)
+  box-shadow 0 $value $value * 3 $color
+
+material-button($background = $white, $color = $black)
+  elevation(1px, $shadowColor)
+  text-transform uppercase
+  background $background
+  text-align center
+  border-radius 2px
+  line-height 36px
+  font-weight 500
+  padding 0 16px
+  font-size 14px
+  transition .2s
+  cursor pointer
+  height: 36px
+  color $color
+  border none
+
+  &:hover
+    elevation(2px, $shadowColor)
