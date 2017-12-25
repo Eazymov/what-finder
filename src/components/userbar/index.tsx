@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 /**
  * Types

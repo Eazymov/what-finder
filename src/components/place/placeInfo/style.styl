@@ -1,9 +1,12 @@
-@import './placeHours/style'
-@import './placePhotos/style'
-@import './placeTags/style'
-
 .info
+  transition: .5s cubic-bezier(.25, .93, .5, .98)
   padding: 10px 15px 0
+  margin-left: -100%
+  flex-shrink: 0
+  width: 100%
+
+  &--active
+    margin-left: 0
 
   &__title
     justify-content: center

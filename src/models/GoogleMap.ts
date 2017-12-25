@@ -1,5 +1,5 @@
-import { GAPIMap } from 'Shared/GAPI'
-import Storage from 'Shared/Storage'
+import { GAPIMap } from 'Utils/GAPI'
+import Storage from 'Utils/Storage'
 import { MapOptions, MapCoords, PlaceResult } from 'Types'
 
 const geolocation = window.navigator.geolocation

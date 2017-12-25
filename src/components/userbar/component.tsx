@@ -13,7 +13,7 @@ interface Props {
 
 import React, { Component } from 'react'
 
-import Storage from 'Shared/Storage'
+import Storage from 'Utils/Storage'
 
 class Userbar extends Component<Props, {}> {
   constructor(props: Props) {

@@ -1,7 +1,10 @@
 import { User, GoogleMap } from 'Models'
 import firebase from 'firebase/app'
+import { BemProps } from 'Utils/decorators/withBem'
 
 export as namespace App
+
+export type BemProps = BemProps
 
 export type User = User
 
@@ -16,6 +19,10 @@ export type Place = google.maps.places.PlaceResult
 export type PlaceReview = google.maps.places.PlaceReview
 
 export type PlaceResult = google.maps.places.PlaceResult
+
+export type PlacePhoto = google.maps.places.PlacePhoto
+
+export type OpeningHours = google.maps.places.OpeningHours
 
 export interface Review extends PlaceReview {
   profile_photo_url?: string

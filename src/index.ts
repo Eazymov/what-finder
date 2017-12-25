@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 import { render } from 'react-dom'
 import AppRouter from 'Router'

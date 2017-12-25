@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { RouteComponentProps as RouteProps } from 'react-router'
+import { RouteComponentProps } from 'react-router'
 
 import GoogleMap from 'Models/GoogleMap'
-import Storage from 'Shared/Storage'
-import AppLoader from 'Shared/loader'
-import { replaceRouteCoords } from 'Utils'
+import Storage from 'Utils/Storage'
+import AppLoader from 'Components/common/loader'
+import { replaceRouteCoords } from 'Utils/router'
 import { MapCoords } from 'Types'
 
 interface State {
@@ -15,7 +15,7 @@ interface RouteParams {
   coords?: string
 }
 
-interface Props extends RouteProps<RouteParams> {
+interface Props extends RouteComponentProps<RouteParams> {
   setActiveZone: (zone: string) => void
   setMap: (map: GoogleMap) => void
 }
@@ -41,18 +41,18 @@ class GoogleMapComponent extends Component<Props, State> {
     )
   }
 
-  componentWillMount (): void {
+  public componentWillMount (): void {
     this.setInitialCoords()
   }
 
-  componentDidMount (): void {
+  public componentDidMount (): void {
     this.createMap()
     this.setMapCoords()
 
     window.onbeforeunload = this.beforeDestroy
   }
   
-  shouldComponentUpdate (): boolean {
+  public shouldComponentUpdate (): boolean {
     const isMounted = !!this.map
 
     return !isMounted

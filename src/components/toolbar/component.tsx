@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import UserbarContainer from 'Components/userbar'
 
-import db, { authMethods } from 'Shared/db'
-import Storage from 'Shared/Storage'
+import db, { authMethods } from 'Utils/db'
+import Storage from 'Utils/Storage'
 import User from 'Models/User'
 
 import { AuthProvider, AuthMethod, AuthData } from 'Types'
@@ -78,9 +78,9 @@ class Toolbar extends Component<Props, State> {
   }
 
   private toggleList = (): void => {
-    const expanded = !this.state.expanded
-
-    this.setState({ expanded })
+    this.setState(prevState => ({
+      expanded: !prevState.expanded
+    }))
   }
 }
 

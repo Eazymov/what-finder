@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 import React, { Component } from 'react'
 import { Action, Dispatch, bindActionCreators } from 'redux'

@@ -1,34 +1,28 @@
-/**
- * Types
- */
-type Hours = google.maps.places.OpeningHours;
+import './style'
+
+import React, { Component } from 'react'
+
+import { OpeningHours } from 'Types'
 
 interface Props {
-  hours: Hours;
+  hours: OpeningHours
 }
 
 interface State {
-  expanded: boolean;
+  expanded: boolean
 }
-/* *** */
-
-import React, { Component } from 'react';
 
 class PlaceHours extends Component<Props, State> {
   public state = {
     expanded: false
-  };
-
-  constructor(props: Props) {
-    super(props);
   }
 
   renderToggleButton(openNow: boolean): JSX.Element {
-    const toggle: () => void = this.toggle;
-    const expanded: boolean = this.state.expanded;
-    const status: string = openNow ? 'open now' : 'closed now';
-    const text: string = expanded ? 'Hide' :  status;
-    const className: string = expanded ? 'active' : '';
+    const toggle: () => void = this.toggle
+    const expanded: boolean = this.state.expanded
+    const status: string = openNow ? 'open now' : 'closed now'
+    const text: string = expanded ? 'Hide' :  status
+    const className: string = expanded ? 'active' : ''
 
     return (
       <button
@@ -37,14 +31,14 @@ class PlaceHours extends Component<Props, State> {
       >
         {text}
       </button>
-    );
+    )
   }
 
   render(): JSX.Element {
-    const hours: Hours = this.props.hours;
-    const expanded: boolean = this.state.expanded;
-    const weekdays: string[] = this.sort(hours.weekday_text);
-    const openNow: boolean = hours.open_now;
+    const hours: OpeningHours = this.props.hours
+    const expanded: boolean = this.state.expanded
+    const weekdays: string[] = this.sort(hours.weekday_text)
+    const openNow: boolean = hours.open_now
   
     return (
       <div className="hours">
@@ -63,24 +57,24 @@ class PlaceHours extends Component<Props, State> {
           {this.renderToggleButton(openNow)}
         </div>
       </div>
-    );
+    )
   }
 
   private sort(weekdays: string[]): string[] {
-    const today: number = (new Date()).getDay() - 1;
+    const today: number = new Date().getDay() - 1
     const result = [
       ...weekdays.slice(today),
       ...weekdays.slice(0, today)
-    ];
+    ]
 
-    return result;
+    return result
   }
 
   private toggle = (): void => {
-    const expanded: boolean = this.state.expanded;
-
-    this.setState({ expanded: !expanded });
+    this.setState(prevState => ({
+      expanded: !prevState.expanded
+    }))
   }
 }
 
-export default PlaceHours;
+export default PlaceHours

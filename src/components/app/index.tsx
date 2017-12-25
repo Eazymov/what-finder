@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 import React, { Component } from 'react'
 import { bindActionCreators, Dispatch } from 'redux'
@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { setUser } from 'Actions'
 
 import AppComponent from './component'
-import Storage from 'Shared/Storage'
+import Storage from 'Utils/Storage'
 import { User } from 'Types'
 
 interface Props {

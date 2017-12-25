@@ -92,10 +92,10 @@ module.exports = {
       'Store': resolve('src/store'),
       'Router': resolve('src/router'),
       'Models': resolve('src/models'),
-      'Shared': resolve('src/shared'),
+      'Constants': resolve('src/constants'),
       'Components': resolve('src/components'),
       'Actions': resolve('src/store/actions'),
-      'ActionTypes': resolve('src/store/actionTypes'),
+      'ActionTypes': resolve('src/constants/actionTypes'),
       'variables.styl': resolve('src/variables.styl'),
       'mixins.styl': resolve('src/mixins.styl')
     },

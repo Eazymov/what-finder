@@ -9,10 +9,10 @@ type MapCoords = App.MapCoords
 import React, { Component } from 'react'
 import { History, Location } from 'history'
 
-import { GAPIAutocomplete } from 'Shared/GAPI'
+import { GAPIAutocomplete } from 'Utils/GAPI'
 import GoogleMap from 'Models/GoogleMap'
 
-import { replaceRouteCoords, replaceRoutePlace } from 'Utils'
+import { replaceRouteCoords, replaceRoutePlace } from 'Utils/router'
 
 interface Props {
   map: GoogleMap

@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 /**
  * Types
@@ -40,9 +40,9 @@ interface Props extends RouteComponentProps<Route> {
 }
 
 import { setPlace, setActiveZone } from 'Actions';
-import { GAPIPlacesService, GAPIPlacesServiceStatus } from 'Shared/GAPI';
+import { GAPIPlacesService, GAPIPlacesServiceStatus } from 'Utils/GAPI';
 
-import LoaderComponent from 'Shared/loader';
+import LoaderComponent from 'Components/common/loader';
 import PlaceComponent from './component';
 
 class PlaceContainer extends Component<Props, State> {

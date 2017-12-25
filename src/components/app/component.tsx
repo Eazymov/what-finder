@@ -7,7 +7,7 @@ import SearchContainer from 'Components/search'
 import PlaceContainer from 'Components/place'
 import GoogleMapContainer from 'Components/googleMap'
 
-import { isMobileDevice } from 'Utils'
+import { isMobileDevice } from 'Utils/is'
 
 const AppComponent = (): JSX.Element => {
   return isMobileDevice() ? <AppMobile /> : <AppDesktop />

@@ -1,14 +1,17 @@
-import './style.styl'
+import './style'
 
 import React, { Component } from 'react'
 import ResizeSensor from 'resize-sensor'
 
-interface Props {
+import { withBem } from 'Utils/decorators'
+import { BemProps } from 'Types'
+
+interface OwnProps {
   color?: string
   className?: string
 }
 
-class ScrollBox extends Component<Props, {}> {
+class ScrollBox extends Component<OwnProps & BemProps> {
   public content: HTMLDivElement
   public scrollbar: HTMLDivElement
   public thumb: HTMLDivElement
@@ -112,4 +115,4 @@ class ScrollBox extends Component<Props, {}> {
   }
 }
 
-export default ScrollBox
+export default withBem<OwnProps>('scrollbox')(ScrollBox)

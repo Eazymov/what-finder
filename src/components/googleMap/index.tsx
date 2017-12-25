@@ -1,6 +1,6 @@
-import './style.styl'
+import './style'
 
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch, Action, bindActionCreators } from 'redux'
 import { RouteComponentProps } from 'react-router'
@@ -21,13 +21,9 @@ interface Props extends OwnProps {
   setMap: (map: GoogleMap) => void
 }
 
-class GoogleMapContainer extends Component<Props> {
-  public render(): JSX.Element {
-    return (
-      <GoogleMapComponent {...this.props} />
-    )
-  }
-}
+const GoogleMapContainer = (props: Props): JSX.Element => (
+  <GoogleMapComponent {...props} />
+)
 
 const dispatchToProps = (dispatch: Dispatch<Action>) => bindActionCreators({
   setMap,

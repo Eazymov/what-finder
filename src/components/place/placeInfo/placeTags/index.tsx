@@ -1,31 +1,25 @@
-/**
- * Types
- */
+import './style'
+
+import React from 'react'
+
 interface Props {
-  tags: string[];
+  tags: string[]
 }
-/* *** */
 
-import React from 'react';
+const PlaceTags = ({ tags }: Props): JSX.Element => (
+  <div className="tags">
+    {
+      tags.map((tag: string, index: number) => (
+        <a
+          key={index}
+          href=""
+          className="tags__tag"
+        >
+          {tag.replace(/_/g, ' ')}
+        </a>
+      ))
+    }
+  </div>
+)
 
-const PlaceTags = (props: Props): JSX.Element => {
-  const tags: string[] = props.tags;
-
-  return (
-    <div className="tags">
-      {
-        tags.map((tag: string, index: number) => (
-          <a
-            key={index}
-            href=""
-            className="tags__tag"
-          >
-            {tag.replace(/_/g, ' ')}
-          </a>
-        ))
-      }
-    </div>
-  );
-};
-
-export default PlaceTags;
+export default PlaceTags

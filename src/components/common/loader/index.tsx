@@ -1,4 +1,4 @@
-import './style.styl'
+import './style'
 
 import React from 'react'
 
